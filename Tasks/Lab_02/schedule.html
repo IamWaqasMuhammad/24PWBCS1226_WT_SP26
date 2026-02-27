@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Schedule | Waqas Muhammad</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .schedule-section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+        }
+
+        th,
+        td {
+            padding: 1.5rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .course-tag {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        .lunch-break {
+            background: rgba(255, 255, 255, 0.03);
+            text-align: center;
+            font-style: italic;
+            color: var(--text-muted);
+            letter-spacing: 0.2rem;
+        }
+
+        .free-period {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><strong>Waqas Flutter DevelopeR</strong></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="schedule.html" class="active">Schedule</a></li>
+                    <li><a href="navigation.html">Navigation</a></li>
+                    <li><a href="registration.html">Registration</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="registration.html" class="btn btn-primary">Join Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="schedule-section animate-in">
+            <div class="section-header">
+                <h1>Weekly Course Schedule</h1>
+                <p class="text-muted">Spring Semester 2026 - Web Technologies & Computer Science</p>
+            </div>
+
+            <div class="table-container glass">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time / Day</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>09:00 - 11:00</td>
+                            <td><span class="course-tag">Linear Algebra</span></td>
+                            <td class="course-tag">Data Science (T)</td>
+                            <td><span class="free-period">No Class</span></td>
+                            <td><span class="course-tag">OS (L)</span></td>
+                            <td class="free-period">No Class</td>
+                        </tr>
+                        <tr>
+                            <td>11:00 - 01:00</td>
+                            <td><span class="course-tag">OS (T)</span></td>
+                            <td><span class="free-period">No Class</span></td>
+                            <td class="course-tag">Web Technologies (L)</td>
+                            <td><span class="course-tag">Applied Physics</span></td>
+                            <td><span class="free-period">No Class</span></td>
+                        </tr>
+                        <tr>
+                            <td>01:00 - 03:00</td>
+                            <td class="course-tag">AI (L)</td>
+                            <td><span class="course-tag">Web Technologies (T)</span></td>
+                            <td><span class="free-period">No Class</span></td>
+                            <td class="course-tag">AI (T)</td>
+                            <td><span class="free-period">No Class</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-info">© 2026 Waqas Muhammad | Lab 02 Assessment</p>
+            <p class="text-muted">UET Peshawar - Computer Science Department</p>
+        </div>
+    </footer>
+</body>
+
+</html>

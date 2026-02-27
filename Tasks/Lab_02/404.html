@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Waqas Muhammad</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .error-section {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .error-code {
+            font-size: 10rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1rem;
+            background: linear-gradient(to bottom, var(--primary), #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.5;
+        }
+
+        .error-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .error-section p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><strong>Waqas Flutter DevelopeR</strong></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="schedule.html">Schedule</a></li>
+                    <li><a href="navigation.html">Navigation</a></li>
+                    <li><a href="registration.html">Registration</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="index.html" class="btn btn-primary">Back Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="error-section animate-in">
+            <div class="error-code">404</div>
+            <h1>Lost in Space?</h1>
+            <p>The page you are looking for doesn't exist or has been moved to another dimension.</p>
+            <a href="index.html" class="btn btn-primary">Return to Earth</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-info">© 2026 Waqas Muhammad | Lab 02 Assessment</p>
+        </div>
+    </footer>
+</body>
+
+</html>

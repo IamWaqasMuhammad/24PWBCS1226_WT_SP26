@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | Waqas Muhammad</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .registration-section {
+            padding: 6rem 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .checkbox-group {
+            margin-top: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .checkbox-group input {
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-label {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 2rem;
+            padding: 1rem;
+        }
+
+        .branding-footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><strong>Waqas Flutter DevelopeR</strong></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="schedule.html">Schedule</a></li>
+                    <li><a href="navigation.html">Navigation</a></li>
+                    <li><a href="registration.html" class="active">Registration</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="registration.html" class="btn btn-primary">Join Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="registration-section animate-in">
+            <h1 style="text-align: center;">Student Registration</h1>
+            <p class="text-muted" style="text-align: center;">Join the CS 224L Web Technologies Course</p>
+
+            <!-- IMPORTANT: Replace 'mqakvjzd' with your OWN Formspree ID to make this form work! -->
+            <form action="https://formspree.io/f/mqakvjzd" method="POST" class="form-card glass">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reg_no">Registration Number</label>
+                    <input type="text" id="reg_no" name="reg_no" placeholder="e.g. 24PWBCS1226" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="example@uetpeshawar.edu.pk" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a secure password"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="course">Course Selection</label>
+                    <select id="course" name="course">
+                        <option value="web-tech">CS 224L Web Technologies</option>
+                        <option value="se">CS 301 Software Engineering</option>
+                        <option value="db">CS 212 Database Systems</option>
+                        <option value="os">CS 402 Operating Systems</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Current Semester</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="semester" value="3" checked> 3rd
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="semester" value="4"> 4th
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="semester" value="5"> 5th
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="semester" value="6"> 6th
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms" class="checkbox-label">
+                        I agree to the terms and conditions and I am currently enrolled in the Department of Computer
+                        Science, UET Peshawar.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary submit-btn">Register Student</button>
+            </form>
+
+            <div class="branding-footer">
+                <p>Department of Computer Science</p>
+                <p>University of Engineering & Technology, Peshawar</p>
+                <p>CS 224L Web Technologies | Mr. Mohammad, Lecturer</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-info">© 2026 Waqas Muhammad | Lab 02 Assessment</p>
+            <p class="text-muted">UET Peshawar - Computer Science Department</p>
+        </div>
+    </footer>
+</body>
+
+</html>

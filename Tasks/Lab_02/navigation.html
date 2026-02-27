@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Menu | Waqas Muhammad</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .nav-section {
+            padding: 6rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav-demo {
+            padding: 3rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .nav-group {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        .nav-group:last-child {
+            border-bottom: none;
+        }
+
+        .nav-group h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .demo-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .demo-links a {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .demo-links a:hover {
+            color: var(--text-main);
+            transform: translateX(5px);
+        }
+
+        .external-link::after {
+            content: ' ↗';
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        .anchor-demo {
+            margin-top: 5rem;
+            padding-top: 5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .anchor-target {
+            padding: 2rem;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><strong>Waqas Flutter DevelopeR</strong></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="schedule.html">Schedule</a></li>
+                    <li><a href="navigation.html" class="active">Navigation</a></li>
+                    <li><a href="registration.html">Registration</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="registration.html" class="btn btn-primary">Join Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="nav-section animate-in">
+            <h1>Site Navigation Structure</h1>
+            <p class="text-muted">Demonstration of semantic navigation, internal anchors, and external links.</p>
+
+            <div class="nav-demo glass">
+                <div class="nav-group">
+                    <h3>Semantic Menu</h3>
+                    <nav class="demo-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="profile.html">About Me</a></li>
+                        <li><a href="schedule.html">Courses</a></li>
+                        <li><a href="registration.html">Register</a></li>
+                        <li><a href="contact.html">Contact Me</a></li>
+                    </nav>
+                </div>
+
+                <div class="nav-group">
+                    <h3>Internal Anchor Links</h3>
+                    <div class="demo-links">
+                        <a href="#branding">Branding Policy</a>
+                        <a href="#accessibility">Accessibility</a>
+                        <a href="#support">Technical Support</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <h3>External Links</h3>
+                    <div class="demo-links">
+                        <a href="https://www.uetpeshawar.edu.pk" target="_blank" class="external-link">UET Peshawar
+                            Official</a>
+                        <a href="https://github.com/iamwaqasmuhammad" target="_blank" class="external-link">GitHub
+                            Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="anchor-demo">
+                <h2 id="branding">Branding Policy</h2>
+                <div class="anchor-target">
+                    <p>All laboratory assignments follow the Department of Computer Science branding guidelines for UET
+                        Peshawar.</p>
+                </div>
+
+                <h2 id="accessibility" style="margin-top: 3rem;">Accessibility</h2>
+                <div class="anchor-target">
+                    <p>This site is built with semantic HTML5 elements to ensure screen reader compatibility and
+                        keyboard navigation.</p>
+                </div>
+
+                <h2 id="support" style="margin-top: 3rem;">Technical Support</h2>
+                <div class="anchor-target">
+                    <p>For support regarding CS 224L Web Technologies, contact Mr. Mohammad, Lecturer at UET Peshawar CS
+                        Department.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-info">© 2026 Waqas Muhammad | Lab 02 Assessment</p>
+            <p class="text-muted">UET Peshawar - Computer Science Department</p>
+        </div>
+    </footer>
+</body>
+
+</html>
