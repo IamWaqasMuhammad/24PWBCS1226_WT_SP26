@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 9 – CSS Transforms | Lab 03</title>
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        /* =========================================================
+       TASK 9: CSS TRANSFORM GALLERY
+       ========================================================= */
+
+        .transform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .t-card {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            overflow: hidden;
+        }
+
+        .t-card .label {
+            font-size: .72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .t-card .code {
+            font-family: 'Courier New', monospace;
+            font-size: .75rem;
+            color: #6ee7b7;
+            background: rgba(0, 0, 0, .3);
+            padding: 5px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        /* Demo boxes */
+        .box {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            transition: transform .4s ease;
+            cursor: pointer;
+        }
+
+        .box-p {
+            background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+        }
+
+        .box-s {
+            background: linear-gradient(135deg, #ff6584, #f9a8d4);
+        }
+
+        .box-g {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+        .box-y {
+            background: linear-gradient(135deg, #fcd34d, #fb923c);
+            color: #0f0e17;
+        }
+
+        .box-c {
+            background: linear-gradient(135deg, #38f9d7, #6c63ff);
+        }
+
+        /* 2D Transforms */
+        .rotate-hover:hover {
+            transform: rotate(45deg);
+        }
+
+        .rotatez:not(:hover) {
+            transform: rotate(15deg);
+        }
+
+        .rotatez:hover {
+            transform: rotate(195deg);
+        }
+
+        .scale-hover:hover {
+            transform: scale(1.4);
+        }
+
+        .scalexy:hover {
+            transform: scaleX(1.5) scaleY(0.7);
+        }
+
+        .tx:hover {
+            transform: translateX(30px);
+        }
+
+        .ty:hover {
+            transform: translateY(-20px);
+        }
+
+        .skew-hover:hover {
+            transform: skewX(20deg);
+        }
+
+        .skewy:hover {
+            transform: skewY(15deg);
+        }
+
+        /* Combined */
+        .combo:hover {
+            transform: rotate(360deg) scale(1.2) translateX(10px);
+        }
+
+        /* Transform Origin */
+        .origin-tl {
+            transform-origin: top left;
+        }
+
+        .origin-tl:hover {
+            transform: rotate(30deg);
+        }
+
+        .origin-br {
+            transform-origin: bottom right;
+        }
+
+        .origin-br:hover {
+            transform: rotate(-30deg);
+        }
+
+        /* 3D Transforms */
+        .scene {
+            width: 100px;
+            height: 100px;
+            perspective: 400px;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform .6s;
+        }
+
+        .scene:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-front,
+        .flip-back {
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            backface-visibility: hidden;
+        }
+
+        .flip-front {
+            background: linear-gradient(135deg, #6c63ff, #ff6584);
+        }
+
+        .flip-back {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            transform: rotateY(180deg);
+        }
+
+        /* 3D rotate X */
+        .rot3dX:hover {
+            transform: rotateX(45deg);
+        }
+
+        .rot3dY:hover {
+            transform: rotateY(45deg);
+        }
+
+        .rot3dZ:hover {
+            transform: rotateZ(45deg);
+        }
+
+        /* Transition animation demo */
+        .transition-demo {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, .06);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .transition-bar {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #6c63ff, #ff6584, #43e97b);
+            animation: slide 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes slide {
+            from {
+                width: 15%;
+            }
+
+            to {
+                width: 95%;
+            }
+        }
+
+        /* Perspective warp on hover */
+        .perspective-card {
+            background: linear-gradient(135deg, #1e1e3f, #0f0e17);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 30px;
+            transition: transform .4s ease;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .perspective-card:hover {
+            transform: perspective(600px) rotateX(10deg) rotateY(-8deg);
+        }
+
+        .full-row {
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 09</div>
+        <h1>CSS Transform Gallery</h1>
+        <p>Rotation · Scaling · Translation · 3D effects · Transform origin · Combined transformations</p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+
+        <!-- 2D TRANSFORMS -->
+        <section class="section">
+            <div class="section-title">1. 2D Transforms (hover to activate)</div>
+            <div class="transform-grid">
+
+                <div class="t-card">
+                    <div class="label">Rotate</div>
+                    <div class="box box-p rotate-hover">🔄</div>
+                    <div class="code">rotate(45deg)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">Scale Up</div>
+                    <div class="box box-s scale-hover">⬆</div>
+                    <div class="code">scale(1.4)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">Scale X/Y</div>
+                    <div class="box box-g scalexy">↔↕</div>
+                    <div class="code">scaleX(1.5) scaleY(0.7)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">Translate X</div>
+                    <div class="box box-y tx">→</div>
+                    <div class="code">translateX(30px)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">Translate Y</div>
+                    <div class="box box-c ty">↑</div>
+                    <div class="code">translateY(-20px)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">Skew X</div>
+                    <div class="box box-p skew-hover">⟋</div>
+                    <div class="code">skewX(20deg)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">Skew Y</div>
+                    <div class="box box-s skewy">⟋</div>
+                    <div class="code">skewY(15deg)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">Default rotate (static)</div>
+                    <div class="box box-g rotatez" style="width:80px;height:80px">✦</div>
+                    <div class="code">rotate(15deg) → hover: 195deg</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TRANSFORM ORIGIN -->
+        <section class="section">
+            <div class="section-title">2. Transform Origin (hover to see)</div>
+            <div class="transform-grid">
+                <div class="t-card">
+                    <div class="label">Origin: top left</div>
+                    <div class="box box-y origin-tl">↖</div>
+                    <div class="code">transform-origin: top left</div>
+                </div>
+                <div class="t-card">
+                    <div class="label">Origin: bottom right</div>
+                    <div class="box box-c origin-br">↘</div>
+                    <div class="code">transform-origin: bottom right</div>
+                </div>
+                <div class="t-card">
+                    <div class="label">Origin: center (default)</div>
+                    <div class="box box-p rotate-hover">✦</div>
+                    <div class="code">transform-origin: center</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D TRANSFORMS -->
+        <section class="section">
+            <div class="section-title">3. 3D Transforms (hover)</div>
+            <div class="transform-grid">
+
+                <div class="t-card">
+                    <div class="label">Flip Card (rotateY)</div>
+                    <div class="scene">
+                        <div class="flip-card-inner">
+                            <div class="flip-front">🎨</div>
+                            <div class="flip-back">✅</div>
+                        </div>
+                    </div>
+                    <div class="code">rotateY(180deg)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">rotateX</div>
+                    <div style="perspective:300px">
+                        <div class="box box-s rot3dX">X</div>
+                    </div>
+                    <div class="code">rotateX(45deg)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">rotateY</div>
+                    <div style="perspective:300px">
+                        <div class="box box-g rot3dY">Y</div>
+                    </div>
+                    <div class="code">rotateY(45deg)</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">rotateZ</div>
+                    <div style="perspective:300px">
+                        <div class="box box-c rot3dZ">Z</div>
+                    </div>
+                    <div class="code">rotateZ(45deg)</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COMBINED + PERSPECTIVE HOVER -->
+        <section class="section">
+            <div class="section-title">4. Combined Transforms &amp; Transition Animation</div>
+            <div class="transform-grid">
+
+                <div class="t-card">
+                    <div class="label">Combined (hover)</div>
+                    <div class="box box-p combo">🌀</div>
+                    <div class="code">rotate + scale + translate</div>
+                </div>
+
+                <div class="t-card">
+                    <div class="label">Animated progress</div>
+                    <div class="transition-demo" style="width:100%">
+                        <div class="transition-bar"></div>
+                    </div>
+                    <div class="code">@keyframes slide — width 15%→95%</div>
+                </div>
+
+                <div class="t-card full-row perspective-card">
+                    <div class="label" style="font-size:.82rem;margin-bottom:6px">Perspective 3D Card Tilt — Hover Over
+                        Me</div>
+                    <p style="color:var(--muted);font-size:.84rem;margin-top:4px">
+                        This entire card uses <code
+                            style="color:#6ee7b7">perspective(600px) rotateX(10deg) rotateY(-8deg)</code> on hover,
+                        giving a realistic 3D tilt effect.
+                        Combined with <code style="color:#6ee7b7">transform-style: preserve-3d</code> and a smooth <code
+                            style="color:#6ee7b7">transition</code>.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1 – CSS Selectors | Lab 03</title>
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        .demo-box {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 18px;
+        }
+
+        .demo-label {
+            font-size: .72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--primary);
+            margin-bottom: 14px;
+        }
+
+        .result-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* ─── 1. BASIC SELECTORS ─────────────────────── */
+
+        /* 1️⃣  Type selector */
+        .basic-section p {
+            color: #c4c4f0;
+            font-size: .95rem;
+        }
+
+        /* 2️⃣  Class selector */
+        .highlight {
+            background: rgba(108, 99, 255, .25);
+            color: #a78bfa;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* 3️⃣  ID selector */
+        #unique-element {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.05rem;
+            border-left: 3px solid var(--secondary);
+            padding-left: 12px;
+        }
+
+        /* 4️⃣  Universal selector (demo scope) */
+        .universal-demo * {
+            outline: 1px dashed rgba(108, 99, 255, .3);
+            padding: 3px;
+            margin: 2px;
+            border-radius: 4px;
+        }
+
+        /* 5️⃣  Grouping selector */
+        h2,
+        h3,
+        h4 {
+            color: var(--text);
+        }
+
+        /* ─── 2. ATTRIBUTE SELECTORS ─────────────────── */
+
+        /* 1️⃣  [attr] – element has attribute */
+        [data-role] {
+            background: rgba(67, 233, 123, .12);
+            border: 1px solid rgba(67, 233, 123, .3);
+            color: #6ee7b7;
+            padding: 5px 14px;
+            border-radius: 8px;
+            font-size: .88rem;
+        }
+
+        /* 2️⃣  [attr="value"] – exact match */
+        input[type="text"] {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: .9rem;
+        }
+
+        /* 3️⃣  [attr^="value"] – starts with */
+        a[href^="https"] {
+            color: #43e97b;
+        }
+
+        a[href^="https"]::after {
+            content: " 🔒";
+            font-size: .75rem;
+        }
+
+        /* ─── 3. COMBINATORS ─────────────────────────── */
+
+        /* 1️⃣  Descendant combinator (space) */
+        .comb-demo span {
+            background: rgba(255, 101, 132, .15);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: .88rem;
+            color: #f9a8d4;
+        }
+
+        /* 2️⃣  Child combinator (>) */
+        .comb-demo>p {
+            border-left: 3px solid var(--primary);
+            padding-left: 10px;
+            margin: 10px 0;
+            color: #c4c4f0;
+        }
+
+        /* 3️⃣  Adjacent sibling (+) */
+        h4+p {
+            margin-top: 4px;
+            color: var(--muted);
+            font-style: italic;
+            font-size: .88rem;
+        }
+
+        /* 4️⃣  General sibling (~) */
+        .sibling-trigger~.sibling-target {
+            color: #f9a8d4;
+            font-weight: 500;
+        }
+
+        /* ─── 4. PSEUDO-CLASSES ──────────────────────── */
+
+        /* 1️⃣  :hover */
+        .pseudo-hover {
+            background: rgba(108, 99, 255, .15);
+            border: 1px solid rgba(108, 99, 255, .3);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background .25s, transform .2s;
+            display: inline-block;
+        }
+
+        .pseudo-hover:hover {
+            background: rgba(108, 99, 255, .35);
+            transform: scale(1.04);
+        }
+
+        /* 2️⃣  :nth-child */
+        .list-demo li {
+            padding: 8px 14px;
+            border-radius: 8px;
+            margin: 4px 0;
+            list-style: none;
+        }
+
+        .list-demo li:nth-child(odd) {
+            background: rgba(108, 99, 255, .12);
+        }
+
+        .list-demo li:nth-child(even) {
+            background: rgba(255, 101, 132, .08);
+        }
+
+        /* 3️⃣  :first-child / :last-child */
+        .list-demo li:first-child {
+            border-top: 2px solid var(--primary);
+        }
+
+        .list-demo li:last-child {
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        /* 4️⃣  :focus */
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, .25);
+        }
+
+        /* 5️⃣  :not() */
+        .tag:not(.disabled) {
+            background: rgba(67, 233, 123, .15);
+            color: #6ee7b7;
+            border: 1px solid rgba(67, 233, 123, .3);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: .83rem;
+        }
+
+        .tag.disabled {
+            opacity: .35;
+            background: rgba(255, 255, 255, .05);
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: .83rem;
+        }
+
+        /* ─── 5. PSEUDO-ELEMENTS ─────────────────────── */
+
+        /* 1️⃣  ::before */
+        .before-demo::before {
+            content: "⟶ ";
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* 2️⃣  ::after */
+        .after-demo::after {
+            content: " ✓";
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* 3️⃣  ::first-letter */
+        .first-letter-demo::first-letter {
+            font-size: 2.8em;
+            font-weight: 800;
+            float: left;
+            line-height: 1;
+            margin-right: 6px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 4️⃣  ::first-line */
+        .first-line-demo::first-line {
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: .04em;
+        }
+
+        /* 5️⃣  ::placeholder */
+        .pseudo-input::placeholder {
+            color: rgba(167, 169, 190, .5);
+            font-style: italic;
+        }
+
+        .pseudo-input {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: .9rem;
+            width: 280px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 01</div>
+        <h1>CSS Selectors Practice</h1>
+        <p>5 basic selectors · 3 attribute selectors · 4 combinators · 5 pseudo-classes · 2 pseudo-elements</p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+
+        <!-- ─── BASIC SELECTORS ─── -->
+        <section class="section">
+            <div class="section-title">1. Basic Selectors (5 types)</div>
+
+            <div class="demo-box basic-section">
+                <div class="demo-label">① Type Selector — selects all &lt;p&gt; tags</div>
+                <p>This paragraph is styled via the <strong>type selector</strong> (<code>p { … }</code>).</p>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">② Class Selector — .highlight</div>
+                <div class="result-row">
+                    <span class="highlight">Highlighted via .highlight class</span>
+                    <span>Normal span (not highlighted)</span>
+                </div>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">③ ID Selector — #unique-element</div>
+                <p id="unique-element">This element is uniquely styled via its ID.</p>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">④ Universal Selector — * (within .universal-demo)</div>
+                <div class="universal-demo" style="line-height:2">
+                    <span>span</span> · <strong>strong</strong> · <em>em</em> · <a href="#">link</a>
+                </div>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">⑤ Grouping Selector — h2, h3, h4</div>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <h4>Heading 4</h4>
+                <p style="font-size:.82rem;color:#a7a9be;margin-top:6px">All three share the same <code>color</code>
+                    rule via grouping.</p>
+            </div>
+        </section>
+
+        <!-- ─── ATTRIBUTE SELECTORS ─── -->
+        <section class="section">
+            <div class="section-title">2. Attribute Selectors (3 types)</div>
+
+            <div class="demo-box">
+                <div class="demo-label">① [data-role] — has specific attribute</div>
+                <div class="result-row">
+                    <span data-role="admin">Admin</span>
+                    <span data-role="editor">Editor</span>
+                    <span data-role="viewer">Viewer</span>
+                </div>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">② input[type="text"] — exact attribute value</div>
+                <input type="text" placeholder="Text input (styled)" />
+                <input type="number" placeholder="Number input (unstyled)"
+                    style="margin-left:10px;background:transparent;border:1px solid #444;color:#fff;padding:8px 14px;border-radius:8px;font-family:inherit;" />
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">③ a[href^="https"] — starts-with attribute</div>
+                <div class="result-row">
+                    <a href="https://uetpeshawar.edu.pk">UET Peshawar (https)</a>
+                    <a href="http://example.com" style="color:#a7a9be">http link (plain)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── COMBINATORS ─── -->
+        <section class="section">
+            <div class="section-title">3. Combinators (4 types)</div>
+
+            <div class="demo-box">
+                <div class="demo-label">① Descendant Combinator (.comb-demo span)</div>
+                <div class="comb-demo">
+                    <p>Contains <span>descendant span</span> and another <span>span</span> inside a paragraph.</p>
+                </div>
+            </div>
+
+            <div class="demo-box comb-demo">
+                <div class="demo-label">② Child Combinator (.comb-demo > p)</div>
+                <p>Direct child paragraph — styled with left border.</p>
+                <div>
+                    <p style="margin:0;color:#a7a9be">Nested paragraph inside div — NOT a direct child, so it is
+                        unstyled.</p>
+                </div>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">③ Adjacent Sibling Combinator (h4 + p)</div>
+                <h4>Heading (h4)</h4>
+                <p>This paragraph immediately follows the h4, so it is styled by the adjacent sibling selector.</p>
+                <p>This second paragraph does NOT follow h4 directly — no extra style.</p>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">④ General Sibling Combinator (.sibling-trigger ~ .sibling-target)</div>
+                <p class="sibling-trigger" style="color:#a7a9be;font-weight:600">Trigger element</p>
+                <p class="sibling-target">Sibling target #1 — styled ✓</p>
+                <p class="sibling-target">Sibling target #2 — also styled ✓</p>
+            </div>
+        </section>
+
+        <!-- ─── PSEUDO-CLASSES ─── -->
+        <section class="section">
+            <div class="section-title">4. Pseudo-Classes (5 types)</div>
+
+            <div class="demo-box">
+                <div class="demo-label">① :hover — hover over the box below</div>
+                <div class="result-row">
+                    <div class="pseudo-hover">Hover over me!</div>
+                </div>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">② :nth-child(odd/even) + ③ :first-child / :last-child</div>
+                <ul class="list-demo">
+                    <li>Item 1 — first-child (top border)</li>
+                    <li>Item 2 — even</li>
+                    <li>Item 3 — odd</li>
+                    <li>Item 4 — even</li>
+                    <li>Item 5 — odd (last-child, bottom border)</li>
+                </ul>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">④ :focus — click the input to see focus ring</div>
+                <input type="text" placeholder="Click me to focus"
+                    style="width:260px;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text);padding:10px 16px;border-radius:10px;font-family:inherit;font-size:.9rem;" />
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">⑤ :not() — tags except .disabled</div>
+                <div class="result-row">
+                    <span class="tag">CSS</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag disabled">Disabled</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── PSEUDO-ELEMENTS ─── -->
+        <section class="section">
+            <div class="section-title">5. Pseudo-Elements (demonstrated below)</div>
+
+            <div class="demo-box">
+                <div class="demo-label">① ::before — arrow added before text</div>
+                <p class="before-demo">This text has a pseudo-element arrow prepended.</p>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">② ::after — checkmark added after text</div>
+                <p class="after-demo">Task completed</p>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">③ ::first-letter — decorative drop cap</div>
+                <p class="first-letter-demo">CSS pseudo-elements allow you to style specific parts of an element without
+                    adding extra markup. The first letter here is a large drop-cap styled with a gradient.</p>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">④ ::first-line — first line styled differently</div>
+                <p class="first-line-demo">The very first line of this paragraph is rendered in the primary purple color
+                    and bold weight. Resize the window to see the rule adapt dynamically to the actual first rendered
+                    line.</p>
+            </div>
+
+            <div class="demo-box">
+                <div class="demo-label">⑤ ::placeholder — styled placeholder text</div>
+                <input class="pseudo-input" type="text" placeholder="Styled placeholder text here…" />
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+[{
+    "username": "user01",
+    "firstName": "User",
+    "lastName": "01",
+    "gender": "Male",
+    "profileURL": "img/male_pro.png",
+    "email": "user01@gmail.com"
+    
+},
+{
+    "username": "user02",
+    "firstName": "User",
+    "lastName": "02",
+    "gender": "Male",
+    "profileURL": "img/male_pro.png",
+    "email": "user02@gmail.com"
+   
+},
+{
+    "username": "user03",
+    "firstName": "User",
+    "lastName": "03",
+    "gender": "Male",
+    "profileURL": "img/male_pro.png",
+    "email": "user03@gmail.com"
+   
+},
+{
+    "username": "user04",
+    "firstName": "User",
+    "lastName": "04",
+    "gender": "Male",
+    "profileURL": "img/male_pro.png",
+    "email": "user04@gmail.com"
+   
+},
+{
+    "username": "user05",
+    "firstName": "User",
+    "lastName": "05",
+    "gender": "Male",
+    "profileURL": "img/male_pro.png",
+    "email": "user05@gmail.com"
+   
+},
+{
+    "username": "user06",
+    "firstName": "User",
+    "lastName": "06",
+    "gender": "Male",
+    "profileURL": "img/male_pro.png",
+    "email": "user06@gmail.com"
+   
+}
+]

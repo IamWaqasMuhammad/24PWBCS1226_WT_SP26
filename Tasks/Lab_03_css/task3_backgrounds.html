@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3 – Background Gallery | Lab 03</title>
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        /* =========================================================
+       TASK 3: BACKGROUND GALLERY
+       ========================================================= */
+
+        .bg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .bg-card {
+            border-radius: 16px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            position: relative;
+            overflow: hidden;
+            transition: transform .25s;
+        }
+
+        .bg-card:hover {
+            transform: scale(1.02);
+        }
+
+        .bg-card .info {
+            background: rgba(0, 0, 0, .55);
+            backdrop-filter: blur(8px);
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+
+        .bg-card .info strong {
+            display: block;
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #a78bfa;
+            margin-bottom: 4px;
+        }
+
+        .bg-card .info p {
+            font-size: .82rem;
+            color: #e2e8f0;
+        }
+
+        /* ─── 1. SOLID COLORS ─── */
+        .bg-solid-1 {
+            background-color: #6c63ff;
+        }
+
+        .bg-solid-2 {
+            background-color: #ff6584;
+        }
+
+        .bg-solid-3 {
+            background-color: #43e97b;
+        }
+
+        /* ─── 2. IMAGE BACKGROUNDS ─── */
+        .bg-img-no-repeat {
+            background-image: url("https://picsum.photos/seed/tech1/600/400");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-img-repeat {
+            background-image: url("https://picsum.photos/seed/pattern/80/80");
+            background-repeat: repeat;
+            background-size: 80px;
+        }
+
+        .bg-img-repeat-x {
+            background-image: url("https://picsum.photos/seed/strip/300/100");
+            background-repeat: repeat-x;
+            background-size: 300px 100px;
+            background-position: top;
+        }
+
+        /* ─── 3. LINEAR GRADIENTS ─── */
+        .bg-linear-1 {
+            background: linear-gradient(135deg, #6c63ff, #ff6584);
+        }
+
+        .bg-linear-2 {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+        }
+
+        .bg-linear-3 {
+            background: linear-gradient(45deg, #43e97b, #38f9d7, #6c63ff);
+        }
+
+        /* ─── 4. RADIAL GRADIENTS ─── */
+        .bg-radial-1 {
+            background: radial-gradient(circle, #6c63ff 0%, #0f0e17 80%);
+        }
+
+        .bg-radial-2 {
+            background: radial-gradient(ellipse at top right, #ff6584, #0f0e17 60%);
+        }
+
+        .bg-radial-3 {
+            background: radial-gradient(circle at 30% 70%, #43e97b 0%, transparent 45%),
+                radial-gradient(circle at 70% 30%, #6c63ff 0%, transparent 45%),
+                #0f0e17;
+        }
+
+        /* ─── 5. MULTIPLE BACKGROUNDS ─── */
+        .bg-multi {
+            background:
+                radial-gradient(circle at 10% 20%, rgba(108, 99, 255, .5) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(255, 101, 132, .5) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(67, 233, 123, .3) 0%, transparent 40%),
+                linear-gradient(160deg, #0f0c29, #1a1a2e);
+        }
+
+        /* ─── 6. BLEND MODES ─── */
+        .bg-blend-multiply {
+            background-color: #6c63ff;
+            background-image: url("https://picsum.photos/seed/blend1/600/400");
+            background-size: cover;
+            background-blend-mode: multiply;
+        }
+
+        .bg-blend-screen {
+            background-color: #ff6584;
+            background-image: url("https://picsum.photos/seed/blend2/600/400");
+            background-size: cover;
+            background-blend-mode: screen;
+        }
+
+        .bg-blend-overlay {
+            background-color: #43e97b;
+            background-image: url("https://picsum.photos/seed/blend3/600/400");
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        .wide-card {
+            grid-column: 1 / -1;
+            min-height: 250px;
+        }
+
+        /* ─── CONIC GRADIENT BONUS ─── */
+        .bg-conic {
+            background: conic-gradient(from 0deg, #6c63ff, #ff6584, #43e97b, #fcd34d, #6c63ff);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 03</div>
+        <h1>Background Gallery</h1>
+        <p>Solid colors · Image patterns · Linear &amp; radial gradients · Multi-layer · Blend modes</p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+
+        <!-- SOLID COLORS -->
+        <section class="section">
+            <div class="section-title">1. Solid Color Backgrounds</div>
+            <div class="bg-grid">
+                <div class="bg-card bg-solid-1">
+                    <div class="info"><strong>background-color</strong>
+                        <p>#6c63ff — Primary Purple</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-solid-2">
+                    <div class="info"><strong>background-color</strong>
+                        <p>#ff6584 — Soft Red/Pink</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-solid-3">
+                    <div class="info"><strong>background-color</strong>
+                        <p>#43e97b — Accent Green</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMAGE BACKGROUNDS -->
+        <section class="section">
+            <div class="section-title">2. Image Backgrounds (repeat patterns)</div>
+            <div class="bg-grid">
+                <div class="bg-card bg-img-no-repeat">
+                    <div class="info"><strong>no-repeat + cover</strong>
+                        <p>background-size: cover; background-repeat: no-repeat;</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-img-repeat">
+                    <div class="info"><strong>repeat (tile)</strong>
+                        <p>background-repeat: repeat; creates a tiled pattern.</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-img-repeat-x">
+                    <div class="info"><strong>repeat-x</strong>
+                        <p>background-repeat: repeat-x; tiles horizontally only.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINEAR GRADIENTS -->
+        <section class="section">
+            <div class="section-title">3. Linear Gradients</div>
+            <div class="bg-grid">
+                <div class="bg-card bg-linear-1">
+                    <div class="info"><strong>135deg diagonal</strong>
+                        <p>linear-gradient(135deg, #6c63ff, #ff6584)</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-linear-2">
+                    <div class="info"><strong>Horizontal — 3 stops</strong>
+                        <p>linear-gradient(to right, #0f0c29, #302b63, #24243e)</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-linear-3">
+                    <div class="info"><strong>45deg — tricolor</strong>
+                        <p>linear-gradient(45deg, green, teal, purple)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RADIAL GRADIENTS -->
+        <section class="section">
+            <div class="section-title">4. Radial Gradients</div>
+            <div class="bg-grid">
+                <div class="bg-card bg-radial-1">
+                    <div class="info"><strong>Circle — center</strong>
+                        <p>radial-gradient(circle, purple → dark)</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-radial-2">
+                    <div class="info"><strong>Ellipse — top right</strong>
+                        <p>radial-gradient(ellipse at top right, …)</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-radial-3">
+                    <div class="info"><strong>Dual radial</strong>
+                        <p>Two separate radial gradients layered on a dark base.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MULTIPLE BACKGROUNDS -->
+        <section class="section">
+            <div class="section-title">5. Multiple Background Layers</div>
+            <div class="bg-grid">
+                <div class="bg-card wide-card bg-multi">
+                    <div class="info">
+                        <strong>3 radial + 1 linear (layered)</strong>
+                        <p>Multiple background values separated by commas, painted from top to bottom in the stack
+                            order.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLEND MODES -->
+        <section class="section">
+            <div class="section-title">6. Background Blend Modes</div>
+            <div class="bg-grid">
+                <div class="bg-card bg-blend-multiply">
+                    <div class="info"><strong>blend-mode: multiply</strong>
+                        <p>Darkens where image and color overlap.</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-blend-screen">
+                    <div class="info"><strong>blend-mode: screen</strong>
+                        <p>Brightens by inverting, multiplying, inverting again.</p>
+                    </div>
+                </div>
+                <div class="bg-card bg-blend-overlay">
+                    <div class="info"><strong>blend-mode: overlay</strong>
+                        <p>Combines multiply and screen based on lightness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BONUS: CONIC -->
+        <section class="section">
+            <div class="section-title">Bonus: Conic Gradient</div>
+            <div class="bg-grid">
+                <div class="bg-card wide-card bg-conic">
+                    <div class="info"><strong>conic-gradient</strong>
+                        <p>conic-gradient(from 0deg, purple, pink, green, yellow, purple)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

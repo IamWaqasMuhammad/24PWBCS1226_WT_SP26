@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lab 03 – CSS Mastery | 24PWBCS1226</title>
+  <link rel="stylesheet" href="styles/shared.css"/>
+  <style>
+    body { background: radial-gradient(ellipse at top left, #1a1a2e, #0f0e17 60%); }
+
+    .hero {
+      text-align: center;
+      padding: 80px 40px 50px;
+    }
+    .hero .label {
+      display: inline-block;
+      background: rgba(108,99,255,.15);
+      border: 1px solid rgba(108,99,255,.4);
+      color: #a78bfa;
+      padding: 5px 18px;
+      border-radius: 50px;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #6c63ff, #ff6584, #43e97b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    .hero p {
+      color: #a7a9be;
+      margin-top: 16px;
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin-inline: auto;
+    }
+    .meta {
+      margin-top: 28px;
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: .85rem;
+      color: #a7a9be;
+    }
+    .meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+      padding: 0 40px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      background: linear-gradient(135deg, rgba(30,30,63,.9), rgba(26,26,46,.9));
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+      padding: 26px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(108,99,255,.06), transparent);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(108,99,255,.2); border-color: rgba(108,99,255,.4); text-decoration: none; }
+    .card:hover::before { opacity: 1; }
+
+    .card-number {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #6c63ff;
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #fffffe;
+    }
+    .card p { font-size: .83rem; color: #a7a9be; line-height: 1.55; }
+
+    .card-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #a7a9be;
+      font-size: .82rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="label">CS 224L · Web Technologies</div>
+    <h1>Lab 03 — CSS Mastery</h1>
+    <p>A complete collection of 13 CSS tasks showcasing selectors, typography, layouts, animations & more.</p>
+    <div class="meta">
+      <span>🎓 24PWBCS1226</span>
+      <span>📅 Spring 2026</span>
+      <span>👨‍🏫 Mr. Mohammad</span>
+      <span>🏛️ UET Peshawar</span>
+    </div>
+  </section>
+
+  <div class="grid">
+    <a href="task1_selectors.html" class="card">
+      <div class="card-icon" style="background:rgba(108,99,255,.15)">🎯</div>
+      <div class="card-number">Task 01</div>
+      <h3>CSS Selectors Practice</h3>
+      <p>Basic selectors, attribute selectors, combinators, pseudo-classes & pseudo-elements.</p>
+    </a>
+    <a href="task2_typography.html" class="card">
+      <div class="card-icon" style="background:rgba(255,101,132,.15)">🔤</div>
+      <div class="card-number">Task 02</div>
+      <h3>Typography Showcase</h3>
+      <p>Google Fonts, font sizes, alignment, decorations, transformations & text shadows.</p>
+    </a>
+    <a href="task3_backgrounds.html" class="card">
+      <div class="card-icon" style="background:rgba(67,233,123,.15)">🎨</div>
+      <div class="card-number">Task 03</div>
+      <h3>Background Gallery</h3>
+      <p>Solid colors, image backgrounds, gradients, multi-layers & blend modes.</p>
+    </a>
+    <a href="task4_images.html" class="card">
+      <div class="card-icon" style="background:rgba(253,203,110,.15)">🖼️</div>
+      <div class="card-number">Task 04</div>
+      <h3>Image Styling Portfolio</h3>
+      <p>Rounded corners, borders, shadows, hover effects, CSS filters & overlays.</p>
+    </a>
+    <a href="task5_buttons.html" class="card">
+      <div class="card-icon" style="background:rgba(108,99,255,.15)">🔘</div>
+      <div class="card-number">Task 05</div>
+      <h3>Button Styling Collection</h3>
+      <p>Sizes, colors, shapes, hover/focus states, shadows, gradients & disabled styling.</p>
+    </a>
+    <a href="task6_form.html" class="card">
+      <div class="card-icon" style="background:rgba(255,101,132,.15)">📝</div>
+      <div class="card-number">Task 06</div>
+      <h3>Form Styling</h3>
+      <p>Custom inputs, focus states, styled buttons, dropdowns, error & success styles.</p>
+    </a>
+    <a href="task7_cards.html" class="card">
+      <div class="card-icon" style="background:rgba(67,233,123,.15)">📦</div>
+      <div class="card-number">Task 07</div>
+      <h3>Card Component Design</h3>
+      <p>Spacing, borders, shadow depth, hover transforms, image+text & CTAs.</p>
+    </a>
+    <a href="task8_navigation.html" class="card">
+      <div class="card-icon" style="background:rgba(253,203,110,.15)">🧭</div>
+      <div class="card-number">Task 08</div>
+      <h3>Navigation Menu Styling</h3>
+      <p>Horizontal & vertical menus, hover/active states, dropdowns & transitions.</p>
+    </a>
+    <a href="task9_transforms.html" class="card">
+      <div class="card-icon" style="background:rgba(108,99,255,.15)">🔄</div>
+      <div class="card-number">Task 09</div>
+      <h3>CSS Transform Gallery</h3>
+      <p>Rotate, scale, translate, 3D transforms, transform origin & combined effects.</p>
+    </a>
+    <a href="task10_effects.html" class="card">
+      <div class="card-icon" style="background:rgba(255,101,132,.15)">✨</div>
+      <div class="card-number">Task 10</div>
+      <h3>Advanced Effects</h3>
+      <p>Gradient text, custom checkboxes, loading animations, text clipping & shadows.</p>
+    </a>
+    <a href="task11_portfolio.html" class="card">
+      <div class="card-icon" style="background:rgba(67,233,123,.15)">👤</div>
+      <div class="card-number">Task 11</div>
+      <h3>Personal Portfolio Styling</h3>
+      <p>Color scheme, typography, spacing, image effects, nav & responsive design.</p>
+    </a>
+    <a href="task12_course.html" class="card">
+      <div class="card-icon" style="background:rgba(253,203,110,.15)">📅</div>
+      <div class="card-number">Task 12</div>
+      <h3>Course Website Styling</h3>
+      <p>Zebra-striped tables, hover rows, borders, color-coded types & responsive tables.</p>
+    </a>
+    <a href="task13_github.html" class="card">
+      <div class="card-icon" style="background:rgba(108,99,255,.15)">🚀</div>
+      <div class="card-number">Task 13</div>
+      <h3>GitHub Pages Enhancement</h3>
+      <p>Custom CSS, consistent color scheme, typography, images & professional look.</p>
+    </a>
+  </div>
+
+  <footer class="footer">
+    <p>Lab 03 — CSS Mastery &nbsp;|&nbsp; 24PWBCS1226 &nbsp;|&nbsp; CS 224L Web Technologies &nbsp;|&nbsp; UET Peshawar</p>
+  </footer>
+
+</body>
+</html>

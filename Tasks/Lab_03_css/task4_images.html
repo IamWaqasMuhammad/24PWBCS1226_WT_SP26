@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4 – Image Styling Portfolio | Lab 03</title>
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        /* =========================================================
+       TASK 4: IMAGE STYLING PORTFOLIO
+       ========================================================= */
+
+        .img-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .img-card {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: box-shadow .3s, transform .3s;
+        }
+
+        .img-card:hover {
+            box-shadow: 0 20px 50px rgba(108, 99, 255, .2);
+        }
+
+        .img-card span {
+            display: block;
+            font-size: .72rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--primary);
+            margin-top: 14px;
+            font-weight: 600;
+        }
+
+        .img-card p {
+            font-size: .8rem;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* BASE IMAGE */
+        .img-base {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ─── 1. ROUNDED CORNERS & CIRCULAR ─── */
+        .img-rounded {
+            border-radius: 16px;
+        }
+
+        .img-circle {
+            border-radius: 50%;
+        }
+
+        /* ─── 2. BORDERS & SHADOWS ─── */
+        .img-border {
+            border: 4px solid var(--primary);
+            border-radius: 12px;
+        }
+
+        .img-shadow {
+            box-shadow: 0 12px 40px rgba(108, 99, 255, .5);
+            border-radius: 12px;
+        }
+
+        .img-fancy-border {
+            border: 3px solid transparent;
+            border-radius: 50%;
+            background:
+                linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, #6c63ff, #ff6584) border-box;
+            box-shadow: 0 8px 32px rgba(108, 99, 255, .35);
+        }
+
+        /* ─── 3. HOVER EFFECTS ─── */
+        .img-hover-zoom {
+            border-radius: 14px;
+            transition: transform .35s ease, box-shadow .35s ease;
+            cursor: pointer;
+        }
+
+        .img-hover-zoom:hover {
+            transform: scale(1.08);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, .5);
+        }
+
+        .img-hover-rotate {
+            border-radius: 14px;
+            transition: transform .4s ease;
+            cursor: pointer;
+        }
+
+        .img-hover-rotate:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .img-hover-brightness {
+            border-radius: 14px;
+            transition: filter .3s ease;
+            cursor: pointer;
+        }
+
+        .img-hover-brightness:hover {
+            filter: brightness(1.3) saturate(1.4);
+        }
+
+        /* ─── 4. CSS FILTERS ─── */
+        .img-grayscale {
+            filter: grayscale(100%);
+            border-radius: 12px;
+        }
+
+        .img-sepia {
+            filter: sepia(100%);
+            border-radius: 12px;
+        }
+
+        .img-blur {
+            filter: blur(3px);
+            border-radius: 12px;
+        }
+
+        .img-saturate {
+            filter: saturate(300%);
+            border-radius: 12px;
+        }
+
+        .img-hue-rotate {
+            filter: hue-rotate(180deg);
+            border-radius: 12px;
+        }
+
+        .img-invert {
+            filter: invert(80%);
+            border-radius: 12px;
+        }
+
+        /* ─── 5. IMAGE OVERLAYS ─── */
+        .overlay-wrap {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .overlay-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s;
+        }
+
+        .overlay-wrap:hover img {
+            transform: scale(1.08);
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 16px;
+            transition: opacity .35s;
+        }
+
+        .overlay-color {
+            background: rgba(108, 99, 255, .75);
+            opacity: 0;
+        }
+
+        .overlay-color:hover {
+            opacity: 1;
+        }
+
+        .overlay-wrap:hover .overlay-color {
+            opacity: 1;
+        }
+
+        .overlay-gradient {
+            background: linear-gradient(to top, rgba(0, 0, 0, .85) 0%, transparent 55%);
+            opacity: 1;
+        }
+
+        .overlay h3 {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .overlay p {
+            color: rgba(255, 255, 255, .8);
+            font-size: .78rem;
+        }
+
+        .overlay-color-always {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(108, 99, 255, .8) 0%, transparent 60%);
+        }
+
+        .overlay-color-always h3 {
+            color: #fff;
+            font-size: .95rem;
+            font-weight: 700;
+        }
+
+        .overlay-color-always p {
+            color: rgba(255, 255, 255, .8);
+            font-size: .78rem;
+        }
+
+        .overlay-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 04</div>
+        <h1>Image Styling Portfolio</h1>
+        <p>Rounded corners · Borders &amp; shadows · Hover effects · CSS filters · Text overlays</p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+
+        <!-- ROUNDED & CIRCULAR -->
+        <section class="section">
+            <div class="section-title">1. Rounded Corners &amp; Circular Images</div>
+            <div class="img-grid">
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/r1/200/200" class="img-base img-rounded" alt="Rounded" />
+                    <span>border-radius: 16px</span>
+                    <p>Softly rounded corners</p>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/r2/200/200" class="img-base img-circle" alt="Circle" />
+                    <span>border-radius: 50%</span>
+                    <p>Perfect circle crop</p>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/r3/200/200" class="img-base img-fancy-border"
+                        alt="Gradient border" />
+                    <span>Gradient border</span>
+                    <p>Transparent border + gradient background-box</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BORDERS & SHADOWS -->
+        <section class="section">
+            <div class="section-title">2. Image Borders &amp; Shadows</div>
+            <div class="img-grid">
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/b1/200/200" class="img-base img-border" alt="Border" />
+                    <span>Solid border</span>
+                    <p>4px solid primary color</p>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/b2/200/200" class="img-base img-shadow" alt="Shadow" />
+                    <span>Box shadow</span>
+                    <p>Colored drop shadow</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOVER EFFECTS -->
+        <section class="section">
+            <div class="section-title">3. Hover Effects &amp; Transitions</div>
+            <div class="img-grid">
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/h1/200/200" class="img-base img-hover-zoom" alt="Zoom" />
+                    <span>:hover → scale(1.08)</span>
+                    <p>Smooth zoom on hover</p>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/h2/200/200" class="img-base img-hover-rotate" alt="Rotate" />
+                    <span>:hover → rotate(5deg)</span>
+                    <p>Slight rotation on hover</p>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/h3/200/200" class="img-base img-hover-brightness"
+                        alt="Brighten" />
+                    <span>:hover → brightness + saturate</span>
+                    <p>Vivid on hover</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS FILTERS -->
+        <section class="section">
+            <div class="section-title">4. CSS Filters</div>
+            <div class="img-grid">
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/f1/200/200" class="img-base img-grayscale" alt="Grayscale" />
+                    <span>grayscale(100%)</span>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/f1/200/200" class="img-base img-sepia" alt="Sepia" />
+                    <span>sepia(100%)</span>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/f2/200/200" class="img-base img-blur" alt="Blur" />
+                    <span>blur(3px)</span>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/f2/200/200" class="img-base img-saturate" alt="Saturate" />
+                    <span>saturate(300%)</span>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/f3/200/200" class="img-base img-hue-rotate" alt="Hue Rotate" />
+                    <span>hue-rotate(180deg)</span>
+                </div>
+                <div class="img-card">
+                    <img src="https://picsum.photos/seed/f3/200/200" class="img-base img-invert" alt="Invert" />
+                    <span>invert(80%)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- OVERLAYS -->
+        <section class="section">
+            <div class="section-title">5. Image Overlays with Text</div>
+            <div class="img-grid">
+                <div class="img-card">
+                    <div class="overlay-wrap">
+                        <img src="https://picsum.photos/seed/o1/200/200" alt="Hover overlay" />
+                        <div class="overlay overlay-color">
+                            <h3>Hover Overlay</h3>
+                            <p>Appears on hover with smooth transition</p>
+                        </div>
+                    </div>
+                    <span>Color overlay on hover</span>
+                </div>
+                <div class="img-card">
+                    <div class="overlay-wrap">
+                        <img src="https://picsum.photos/seed/o2/200/200" alt="Gradient overlay" />
+                        <div class="overlay overlay-gradient">
+                            <div class="overlay-bottom">
+                                <h3 style="color:#fff;font-size:.9rem;font-weight:700">Always visible</h3>
+                                <p style="color:rgba(255,255,255,.8);font-size:.75rem">Gradient overlay at bottom</p>
+                            </div>
+                        </div>
+                    </div>
+                    <span>Always-on gradient overlay</span>
+                </div>
+                <div class="img-card">
+                    <div class="overlay-wrap">
+                        <img src="https://picsum.photos/seed/o3/200/200" alt="Zoom + text" />
+                        <div
+                            style="position:absolute;inset:0;background:linear-gradient(to top, rgba(108,99,255,.85) 0%, transparent 60%);display:flex;align-items:flex-end;padding:16px;">
+                            <div>
+                                <h3 style="color:#fff;font-size:.9rem;font-weight:700;margin:0">Project Title</h3>
+                                <p style="color:rgba(255,255,255,.75);font-size:.75rem;margin:2px 0 0">Web Technologies
+                                    Lab</p>
+                            </div>
+                        </div>
+                    </div>
+                    <span>Text on gradient overlay</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

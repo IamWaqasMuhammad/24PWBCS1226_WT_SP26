@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2 – Typography Showcase | Lab 03</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;700&family=Fira+Code:wght@300;400;500;700&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        /* =========================================================
+       TASK 2: TYPOGRAPHY SHOWCASE
+       ========================================================= */
+
+        .typo-card {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .font-label {
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .font-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ─── GOOGLE FONTS ─── */
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .font-fira {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .playfair-demo h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #e8d5b7;
+        }
+
+        .playfair-demo p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--muted);
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+
+        .grotesk-demo h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -.02em;
+            color: #93c5fd;
+        }
+
+        .grotesk-demo p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        .fira-demo code {
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            color: #86efac;
+            background: rgba(0, 0, 0, .35);
+            border: 1px solid rgba(134, 239, 172, .2);
+            padding: 12px 18px;
+            border-radius: 8px;
+            display: block;
+            line-height: 1.8;
+        }
+
+        /* ─── FONT SIZES ─── */
+        .size-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .size-px {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .size-rem {
+            font-size: 1.25rem;
+            color: #c4c4f0;
+        }
+
+        .size-em {
+            font-size: 1.5em;
+            color: #f9a8d4;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .size-vw {
+            font-size: 2.5vw;
+            color: #86efac;
+        }
+
+        .size-pct {
+            font-size: 130%;
+            color: #fcd34d;
+        }
+
+        /* ─── TEXT ALIGNMENT ─── */
+        .align-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .align-box {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            font-size: .9rem;
+            color: var(--muted);
+        }
+
+        .align-box strong {
+            display: block;
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .t-left {
+            text-align: left;
+        }
+
+        .t-center {
+            text-align: center;
+        }
+
+        .t-right {
+            text-align: right;
+        }
+
+        .t-justify {
+            text-align: justify;
+        }
+
+        /* ─── DECORATION & TRANSFORM ─── */
+        .deco-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px 24px;
+        }
+
+        .deco-item {
+            padding: 8px 0;
+            font-size: .95rem;
+        }
+
+        .d-underline {
+            text-decoration: underline;
+            text-decoration-color: var(--primary);
+        }
+
+        .d-overline {
+            text-decoration: overline;
+            text-decoration-color: var(--secondary);
+        }
+
+        .d-linethrough {
+            text-decoration: line-through;
+            text-decoration-color: var(--accent);
+            opacity: .7;
+        }
+
+        .d-dashed {
+            text-decoration: underline dashed var(--primary);
+        }
+
+        .d-wavy {
+            text-decoration: underline wavy var(--secondary);
+        }
+
+        .t-uppercase {
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            font-size: .85rem;
+        }
+
+        .t-lowercase {
+            text-transform: lowercase;
+        }
+
+        .t-capitalize {
+            text-transform: capitalize;
+        }
+
+        .t-smallcaps {
+            font-variant: small-caps;
+        }
+
+        /* ─── TEXT SHADOWS ─── */
+        .shadow-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .shadow-item {
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .s1 {
+            text-shadow: 2px 2px 6px rgba(108, 99, 255, .8);
+            color: #fffffe;
+        }
+
+        .s2 {
+            text-shadow: 0 0 20px rgba(255, 101, 132, .9), 0 0 40px rgba(255, 101, 132, .5);
+            color: #ff6584;
+        }
+
+        .s3 {
+            text-shadow: -2px 2px 0 #6c63ff, 2px -2px 0 #ff6584;
+            color: #fffffe;
+        }
+
+        .s4 {
+            text-shadow: 3px 3px 0 rgba(108, 99, 255, .6), 6px 6px 0 rgba(255, 101, 132, .3);
+            color: var(--text);
+        }
+
+        .s5 {
+            text-shadow:
+                0 0 10px rgba(67, 233, 123, .9),
+                0 0 20px rgba(67, 233, 123, .6),
+                0 0 40px rgba(67, 233, 123, .3);
+            color: #43e97b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 02</div>
+        <h1>Typography Showcase</h1>
+        <p>Google Fonts · Font units · Alignment · Decoration & Transform · Text Shadows</p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+
+        <!-- GOOGLE FONTS -->
+        <section class="section">
+            <div class="section-title">1. Google Fonts (3 fonts)</div>
+
+            <div class="typo-card playfair-demo">
+                <div class="font-label">① Playfair Display — Elegant Serif</div>
+                <h2>The Art of Typography</h2>
+                <p>Typography is the craft of arranging type to make written language legible, readable, and visually
+                    appealing.</p>
+            </div>
+
+            <div class="typo-card grotesk-demo">
+                <div class="font-label">② Space Grotesk — Modern Sans-Serif</div>
+                <h2>Clean & Geometric Design</h2>
+                <p>A versatile proportional sans-serif typeface designed for use in both digital and print media.</p>
+            </div>
+
+            <div class="typo-card fira-demo">
+                <div class="font-label">③ Fira Code — Monospace with Ligatures</div>
+                <code>const greet = (name) =&gt; `Hello, ${name}! 👋`;<br>console.log(greet("Web Technologies"));</code>
+            </div>
+        </section>
+
+        <!-- FONT SIZES -->
+        <section class="section">
+            <div class="section-title">2. Font Sizes (different units)</div>
+            <div class="typo-card">
+                <div class="size-grid">
+                    <p class="size-px"><strong>12px</strong> — pixel unit (absolute)</p>
+                    <p class="size-rem"><strong>1.25rem</strong> — root em (relative to root font-size)</p>
+                    <p class="size-em"><strong>1.5em</strong> — em unit (relative to parent)</p>
+                    <p class="size-vw"><strong>2.5vw</strong> — viewport width unit (responsive)</p>
+                    <p class="size-pct"><strong>130%</strong> — percentage (relative to parent)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEXT ALIGNMENT -->
+        <section class="section">
+            <div class="section-title">3. Text Alignment</div>
+            <div class="typo-card">
+                <div class="align-grid">
+                    <div class="align-box t-left">
+                        <strong>Left</strong>
+                        Typography shapes how readers experience written content.
+                    </div>
+                    <div class="align-box t-center">
+                        <strong>Center</strong>
+                        Typography shapes how readers experience written content.
+                    </div>
+                    <div class="align-box t-right">
+                        <strong>Right</strong>
+                        Typography shapes how readers experience written content.
+                    </div>
+                    <div class="align-box t-justify">
+                        <strong>Justify</strong>
+                        Typography shapes how readers experience the written word across all media.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DECORATION & TRANSFORM -->
+        <section class="section">
+            <div class="section-title">4. Text Decoration & Transformation</div>
+            <div class="typo-card">
+                <div class="font-label" style="margin-bottom:18px">Decorations</div>
+                <div class="deco-grid">
+                    <span class="deco-item d-underline">Underline decoration</span>
+                    <span class="deco-item d-overline">Overline decoration</span>
+                    <span class="deco-item d-linethrough">Line-through decoration</span>
+                    <span class="deco-item d-dashed">Dashed underline</span>
+                    <span class="deco-item d-wavy">Wavy underline</span>
+                </div>
+                <div class="font-label" style="margin-top:24px;margin-bottom:18px">Transformations</div>
+                <div class="deco-grid">
+                    <span class="deco-item t-uppercase">uppercase transform</span>
+                    <span class="deco-item t-lowercase">LOWERCASE TRANSFORM</span>
+                    <span class="deco-item t-capitalize">capitalize every word</span>
+                    <span class="deco-item t-smallcaps">Small Caps Variant</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEXT SHADOWS -->
+        <section class="section">
+            <div class="section-title">5. Text Shadow Effects</div>
+            <div class="typo-card">
+                <div class="shadow-grid">
+                    <div class="shadow-item s1">Soft Drop Shadow</div>
+                    <div class="shadow-item s2">Neon Glow Effect</div>
+                    <div class="shadow-item s3">Double Color Shadow</div>
+                    <div class="shadow-item s4">Layered 3D Shadow</div>
+                    <div class="shadow-item s5">Neon Green Pulse</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

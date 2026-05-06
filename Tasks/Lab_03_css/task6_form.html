@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 6 – Form Styling | Lab 03</title>
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        /* =========================================================
+       TASK 6: FORM STYLING
+       ========================================================= */
+
+        .form-wrapper {
+            max-width: 640px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            background: linear-gradient(90deg, #6c63ff, #ff6584);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-subtitle {
+            color: var(--muted);
+            font-size: .88rem;
+            margin-bottom: 30px;
+        }
+
+        /* ─── GROUPS ─── */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: .8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--muted);
+            margin-bottom: 7px;
+        }
+
+        .form-group label span.req {
+            color: var(--secondary);
+            margin-left: 2px;
+        }
+
+        /* ─── INPUTS ─── */
+        .form-control {
+            width: 100%;
+            background: rgba(255, 255, 255, .05);
+            border: 1.5px solid rgba(255, 255, 255, .1);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: .9rem;
+            padding: 11px 14px;
+            transition: border-color .25s, box-shadow .25s, background .2s;
+            -webkit-appearance: none;
+        }
+
+        .form-control::placeholder {
+            color: rgba(167, 169, 190, .4);
+        }
+
+        /* ─── FOCUS ─── */
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, .2);
+            background: rgba(108, 99, 255, .06);
+        }
+
+        /* ─── SELECT ─── */
+        select.form-control {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236c63ff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        select.form-control option {
+            background: #1a1a2e;
+            color: #fffffe;
+        }
+
+        /* ─── TEXTAREA ─── */
+        textarea.form-control {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        /* ─── CHECKBOX & RADIO ─── */
+        .check-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .check-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: .88rem;
+            color: var(--muted);
+        }
+
+        .check-label input[type="checkbox"],
+        .check-label input[type="radio"] {
+            display: none;
+        }
+
+        .check-box,
+        .radio-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, .04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+            flex-shrink: 0;
+        }
+
+        .radio-box {
+            border-radius: 50%;
+        }
+
+        .check-label input[type="checkbox"]:checked~.check-box {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .check-label input[type="checkbox"]:checked~.check-box::after {
+            content: "✓";
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 700;
+        }
+
+        .check-label input[type="radio"]:checked~.radio-box {
+            border-color: var(--primary);
+        }
+
+        .check-label input[type="radio"]:checked~.radio-box::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* ─── ERROR STATE ─── */
+        .form-control.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, .15);
+            background: rgba(239, 68, 68, .05);
+        }
+
+        .error-msg {
+            font-size: .76rem;
+            color: #f87171;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ─── SUCCESS STATE ─── */
+        .form-control.success {
+            border-color: #43e97b;
+            box-shadow: 0 0 0 3px rgba(67, 233, 123, .15);
+            background: rgba(67, 233, 123, .05);
+        }
+
+        .success-msg {
+            font-size: .76rem;
+            color: #6ee7b7;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #6c63ff, #ff6584);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: opacity .25s, transform .2s, box-shadow .25s;
+            margin-top: 28px;
+        }
+
+        .btn-submit:hover {
+            opacity: .9;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(108, 99, 255, .4);
+        }
+
+        .btn-submit:focus {
+            outline: 3px solid rgba(108, 99, 255, .5);
+            outline-offset: 3px;
+        }
+
+        .btn-secondary-form {
+            width: 100%;
+            background: transparent;
+            color: var(--muted);
+            border: 1.5px solid rgba(255, 255, 255, .1);
+            border-radius: 12px;
+            padding: 13px;
+            font-size: .92rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all .25s;
+            margin-top: 10px;
+        }
+
+        .btn-secondary-form:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ─── SUCCESS BANNER ─── */
+        .success-banner {
+            background: rgba(67, 233, 123, .1);
+            border: 1px solid rgba(67, 233, 123, .3);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-size: .88rem;
+            color: #6ee7b7;
+        }
+
+        .success-banner .icon {
+            font-size: 1.4rem;
+        }
+
+        /* ─── INPUT ICON ─── */
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap .i-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .input-wrap .form-control {
+            padding-right: 38px;
+        }
+
+        /* ─── PROGRESS ─── */
+        .strength-bar {
+            height: 4px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, .08);
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .strength-bar .fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #ef4444, #fcd34d 50%, #43e97b);
+            width: 60%;
+            transition: width .3s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 06</div>
+        <h1>Form Styling</h1>
+        <p>Custom inputs · Focus states · Dropdowns · Error &amp; success styles · Registration form</p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+
+        <div class="form-wrapper">
+            <div class="success-banner">
+                <span class="icon">✅</span>
+                <div>
+                    <strong>Account created successfully!</strong>
+                    <div style="font-size:.8rem;opacity:.8;margin-top:2px">This is how a success confirmation looks.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-title">Create Your Account</div>
+            <p class="form-subtitle">Fill in the fields below to register for CS 224L Web Technologies</p>
+
+            <form novalidate>
+
+                <!-- NAME -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name <span class="req">*</span></label>
+                        <div class="input-wrap">
+                            <input type="text" class="form-control success" value="Waqas" placeholder="First name" />
+                            <span class="i-icon">✓</span>
+                        </div>
+                        <div class="success-msg">✓ Looks good!</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name <span class="req">*</span></label>
+                        <div class="input-wrap">
+                            <input type="text" class="form-control success" value="Muhammad" placeholder="Last name" />
+                            <span class="i-icon">✓</span>
+                        </div>
+                        <div class="success-msg">✓ Looks good!</div>
+                    </div>
+                </div>
+
+                <!-- STUDENT ID -->
+                <div class="form-group">
+                    <label>Student ID <span class="req">*</span></label>
+                    <input type="text" class="form-control" placeholder="e.g. 24PWBCS1226" />
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label>Email Address <span class="req">*</span></label>
+                    <div class="input-wrap">
+                        <input type="email" class="form-control error" value="not-a-valid-email"
+                            placeholder="you@example.com" />
+                        <span class="i-icon">⚠️</span>
+                    </div>
+                    <div class="error-msg">⚠ Please enter a valid email address.</div>
+                </div>
+
+                <!-- DEPARTMENT -->
+                <div class="form-group">
+                    <label>Department <span class="req">*</span></label>
+                    <select class="form-control">
+                        <option value="" disabled selected>Select your department…</option>
+                        <option value="cs">Computer Science</option>
+                        <option value="se">Software Engineering</option>
+                        <option value="it">Information Technology</option>
+                        <option value="ee">Electrical Engineering</option>
+                    </select>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="form-group">
+                    <label>Password <span class="req">*</span></label>
+                    <input type="password" class="form-control" placeholder="Create a strong password"
+                        value="MyP@ssw0rd" />
+                    <div class="strength-bar">
+                        <div class="fill"></div>
+                    </div>
+                    <div style="font-size:.75rem;color:#fcd34d;margin-top:5px">🔒 Password strength: Medium</div>
+                </div>
+
+                <!-- GENDER -->
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="check-group" style="flex-direction:row;gap:20px;">
+                        <label class="check-label">
+                            <input type="radio" name="gender" value="male" />
+                            <span class="radio-box"></span> Male
+                        </label>
+                        <label class="check-label">
+                            <input type="radio" name="gender" value="female" />
+                            <span class="radio-box"></span> Female
+                        </label>
+                        <label class="check-label">
+                            <input type="radio" name="gender" value="other" checked />
+                            <span class="radio-box"></span> Other
+                        </label>
+                    </div>
+                </div>
+
+                <!-- INTERESTS -->
+                <div class="form-group">
+                    <label>Interests</label>
+                    <div class="check-group">
+                        <label class="check-label">
+                            <input type="checkbox" checked />
+                            <span class="check-box"></span> Web Technologies
+                        </label>
+                        <label class="check-label">
+                            <input type="checkbox" />
+                            <span class="check-box"></span> Machine Learning
+                        </label>
+                        <label class="check-label">
+                            <input type="checkbox" checked />
+                            <span class="check-box"></span> Mobile Development
+                        </label>
+                    </div>
+                </div>
+
+                <!-- BIO -->
+                <div class="form-group">
+                    <label>Short Bio</label>
+                    <textarea class="form-control" placeholder="Tell us a little about yourself…" rows="3"></textarea>
+                </div>
+
+                <!-- SUBMIT -->
+                <button type="submit" class="btn-submit">Create Account →</button>
+                <button type="reset" class="btn-secondary-form">Clear Form</button>
+
+            </form>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

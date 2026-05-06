@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 7 – Card Components | Lab 03</title>
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(30, 30, 63, .9);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, .5);
+            border-color: rgba(108, 99, 255, .35);
+        }
+
+        .card-img-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-chip {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(108, 99, 255, .9);
+            color: #fff;
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+
+        .chip-green {
+            background: rgba(67, 233, 123, .9) !important;
+            color: #0f0e17 !important;
+        }
+
+        .chip-pink {
+            background: rgba(255, 101, 132, .9) !important;
+        }
+
+        .card-body {
+            padding: 22px;
+        }
+
+        .card-cat {
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .card-desc {
+            font-size: .83rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .card-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 14px;
+            font-size: .88rem;
+            align-items: center;
+        }
+
+        .card-stars span.rating {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-left: 4px;
+        }
+
+        .card-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .price-old {
+            font-size: .88rem;
+            color: var(--muted);
+            text-decoration: line-through;
+        }
+
+        .price-period {
+            font-size: .8rem;
+            color: var(--muted);
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 18px;
+        }
+
+        .features li {
+            font-size: .82rem;
+            color: var(--muted);
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .features li::before {
+            content: "✓";
+            color: #43e97b;
+            font-weight: 700;
+        }
+
+        .card-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: .9rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            transition: all .25s;
+            text-decoration: none;
+        }
+
+        .btn-a {
+            background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+            color: #fff;
+        }
+
+        .btn-a:hover {
+            opacity: .9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(108, 99, 255, .4);
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn-b {
+            background: transparent;
+            color: #6c63ff;
+            border: 2px solid #6c63ff;
+        }
+
+        .btn-b:hover {
+            background: #6c63ff;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .btn-c {
+            background: linear-gradient(90deg, #43e97b, #38f9d7);
+            color: #0f0e17;
+        }
+
+        .btn-c:hover {
+            opacity: .9;
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: #0f0e17;
+        }
+
+        .card-footer {
+            padding: 14px 22px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: .78rem;
+            color: var(--muted);
+        }
+
+        .card-footer img {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* horizontal */
+        .card-h {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+        }
+
+        .card-h .card-img-wrap {
+            border-radius: 0;
+        }
+
+        .card-h .card-img {
+            height: 100%;
+            border-radius: 18px 0 0 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 07</div>
+        <h1>Card Component Design</h1>
+        <p>Spacing · Borders · Shadows · Hover transforms · Image+text · CTAs</p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+        <section class="section">
+            <div class="section-title">Product / Course Cards</div>
+            <div class="cards-grid">
+
+                <div class="card">
+                    <div class="card-img-wrap">
+                        <img src="https://picsum.photos/seed/c1/400/200" class="card-img" alt="CSS Course" />
+                        <span class="card-chip">Bestseller</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-cat">Web Development</div>
+                        <div class="card-title">CSS Mastery Course</div>
+                        <div class="card-stars">⭐⭐⭐⭐⭐ <span class="rating">5.0 (128)</span></div>
+                        <p class="card-desc">Master Flexbox, Grid, animations, and advanced CSS from scratch.</p>
+                        <div class="card-price"><span class="price">$29</span><span class="price-old">$79</span></div>
+                        <button class="card-btn btn-a">Enroll Now →</button>
+                    </div>
+                    <div class="card-footer">
+                        <div class="author">
+                            <img src="https://picsum.photos/seed/a1/30/30" alt="Author" /> Mr. Mohammad
+                        </div>
+                        <span>12h</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-wrap">
+                        <img src="https://picsum.photos/seed/c2/400/200" class="card-img" alt="Design" />
+                        <span class="card-chip chip-green">New</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-cat">UI/UX Design</div>
+                        <div class="card-title">Modern Web Design Principles</div>
+                        <div class="card-stars">⭐⭐⭐⭐ <span class="rating">4.8 (96)</span></div>
+                        <p class="card-desc">Color theory, typography, and layout composition for web.</p>
+                        <div class="card-price"><span class="price">Free</span></div>
+                        <button class="card-btn btn-c">Start Learning →</button>
+                    </div>
+                    <div class="card-footer">
+                        <div class="author">
+                            <img src="https://picsum.photos/seed/a2/30/30" alt="UET" /> UET Peshawar
+                        </div>
+                        <span>8h</span>
+                    </div>
+                </div>
+
+                <div class="card" style="border-color:rgba(108,99,255,.25)">
+                    <div class="card-img-wrap">
+                        <img src="https://picsum.photos/seed/c3/400/200" class="card-img" alt="JS" />
+                        <span class="card-chip chip-pink">Pro</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-cat">JavaScript</div>
+                        <div class="card-title">Advanced JS &amp; DOM</div>
+                        <ul class="features">
+                            <li>ES6+ modern syntax</li>
+                            <li>Async/Await &amp; Promises</li>
+                            <li>DOM manipulation</li>
+                            <li>Real-world projects</li>
+                        </ul>
+                        <div class="card-price"><span class="price">$49</span><span class="price-period">/mo</span>
+                        </div>
+                        <button class="card-btn btn-b">View Details</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">Horizontal Card</div>
+            <div class="cards-grid">
+                <div class="card card-h">
+                    <div class="card-img-wrap">
+                        <img src="https://picsum.photos/seed/hz/400/300" class="card-img" alt="Article" />
+                    </div>
+                    <div class="card-body">
+                        <div class="card-cat">Featured Article</div>
+                        <div class="card-title">CSS Grid vs Flexbox — When to Use Which?</div>
+                        <p class="card-desc">A comprehensive guide comparing CSS Grid and Flexbox. Includes real-world
+                            examples and best practices from UET Peshawar's Web Technologies curriculum.</p>
+                        <div style="display:flex;gap:12px">
+                            <button class="card-btn btn-a" style="width:auto;padding:10px 22px">Read Article</button>
+                            <button class="card-btn btn-b" style="width:auto;padding:10px 22px">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

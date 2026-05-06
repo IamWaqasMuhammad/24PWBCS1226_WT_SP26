@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 8 – Navigation Menu | Lab 03</title>
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        /* =========================================================
+       TASK 8: NAVIGATION MENU STYLING
+       ========================================================= */
+
+        /* ─── HORIZONTAL NAV ─── */
+        .demo-nav-wrap {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        /* 1. Top horizontal bar */
+        .nav-h {
+            display: flex;
+            align-items: center;
+            background: rgba(14, 13, 32, .95);
+            padding: 0 24px;
+            height: 60px;
+            gap: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-h-logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: linear-gradient(90deg, #6c63ff, #ff6584);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-right: auto;
+            text-decoration: none;
+        }
+
+        .nav-h a {
+            color: var(--muted);
+            font-size: .88rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: color .2s, background .2s;
+            position: relative;
+        }
+
+        .nav-h a:hover {
+            color: var(--text);
+            background: rgba(108, 99, 255, .12);
+            text-decoration: none;
+        }
+
+        .nav-h a.active {
+            color: #fff;
+            background: rgba(108, 99, 255, .2);
+        }
+
+        .nav-h a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 12px;
+            right: 12px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px 2px 0 0;
+        }
+
+        .nav-h .nav-cta {
+            background: var(--primary);
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 7px 18px !important;
+            margin-left: 8px;
+        }
+
+        .nav-h .nav-cta:hover {
+            background: #5345e0 !important;
+            color: #fff !important;
+        }
+
+        /* 2. Underline bar */
+        .nav-underline {
+            display: flex;
+            gap: 0;
+            background: rgba(14, 13, 32, .95);
+            padding: 0 24px;
+            border-bottom: 2px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-underline a {
+            color: var(--muted);
+            font-size: .88rem;
+            font-weight: 500;
+            padding: 14px 18px;
+            text-decoration: none;
+            transition: color .2s;
+            position: relative;
+        }
+
+        .nav-underline a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform .25s;
+        }
+
+        .nav-underline a:hover {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-underline a:hover::after,
+        .nav-underline a.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-underline a.active {
+            color: var(--primary);
+        }
+
+        /* 3. Demo page content area */
+        .nav-content-preview {
+            padding: 20px 24px;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        /* ─── DROPDOWN NAV ─── */
+        .nav-dropdown {
+            display: flex;
+            align-items: center;
+            background: rgba(14, 13, 32, .95);
+            padding: 0 24px;
+            height: 60px;
+            gap: 4px;
+        }
+
+        .nav-dropdown-logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-right: auto;
+        }
+
+        .dd-item {
+            position: relative;
+        }
+
+        .dd-item>a {
+            color: var(--muted);
+            font-size: .88rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dd-item>a:hover {
+            color: var(--text);
+            background: rgba(108, 99, 255, .12);
+            text-decoration: none;
+        }
+
+        .dd-item>a::after {
+            content: "⌄";
+            font-size: .75rem;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: rgba(20, 20, 45, .98);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 12px;
+            min-width: 180px;
+            padding: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
+            z-index: 100;
+        }
+
+        .dd-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 9px 14px;
+            color: var(--muted);
+            font-size: .86rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(108, 99, 255, .18);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        /* ─── VERTICAL NAV ─── */
+        .nav-v-outer {
+            display: flex;
+            gap: 0;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .nav-v {
+            width: 220px;
+            background: rgba(14, 13, 32, .95);
+            padding: 20px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            border-right: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .nav-v-logo {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--primary);
+            padding: 0 14px;
+            margin-bottom: 16px;
+        }
+
+        .nav-v-section {
+            font-size: .65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: rgba(167, 169, 190, .5);
+            padding: 8px 14px 4px;
+        }
+
+        .nav-v a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--muted);
+            font-size: .86rem;
+            font-weight: 500;
+            padding: 9px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .nav-v a:hover {
+            background: rgba(108, 99, 255, .12);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-v a.active {
+            background: rgba(108, 99, 255, .2);
+            color: #fff;
+        }
+
+        .nav-v a .icon {
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-v-content {
+            flex: 1;
+            padding: 24px;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        /* ─── RESPONSIVE BURGER ─── */
+        .burger-nav {
+            background: rgba(14, 13, 32, .95);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .burger-bar {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid transparent;
+        }
+
+        .burger-logo {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #fff;
+            margin-right: auto;
+        }
+
+        .burger-btn {
+            background: rgba(108, 99, 255, .18);
+            border: 1px solid rgba(108, 99, 255, .3);
+            color: var(--text);
+            border-radius: 8px;
+            padding: 7px 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background .2s;
+        }
+
+        .burger-btn:hover {
+            background: rgba(108, 99, 255, .35);
+        }
+
+        .burger-menu {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .burger-menu a {
+            display: block;
+            padding: 10px 14px;
+            border-radius: 8px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .88rem;
+            transition: all .2s;
+        }
+
+        .burger-menu a:hover {
+            background: rgba(108, 99, 255, .12);
+            color: var(--text);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 08</div>
+        <h1>Navigation Menu Styling</h1>
+        <p>Horizontal &amp; vertical layouts · Hover &amp; active states · Dropdown · Responsive design · Transitions
+        </p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+
+        <!-- HORIZONTAL NAV A -->
+        <section class="section">
+            <div class="section-title">1. Horizontal Navigation — Pill Style</div>
+            <div class="demo-nav-wrap">
+                <nav class="nav-h">
+                    <a href="#" class="nav-h-logo">WebTech</a>
+                    <a href="#" class="active">Home</a>
+                    <a href="#">Courses</a>
+                    <a href="#">Labs</a>
+                    <a href="#">About</a>
+                    <a href="#" class="nav-cta">Login</a>
+                </nav>
+                <div class="nav-content-preview">Page content sits below the navigation bar.</div>
+            </div>
+        </section>
+
+        <!-- UNDERLINE NAV -->
+        <section class="section">
+            <div class="section-title">2. Horizontal Navigation — Underline Indicator</div>
+            <div class="demo-nav-wrap">
+                <nav class="nav-underline">
+                    <a href="#" class="active">Overview</a>
+                    <a href="#">Selectors</a>
+                    <a href="#">Typography</a>
+                    <a href="#">Backgrounds</a>
+                    <a href="#">Animations</a>
+                </nav>
+                <div class="nav-content-preview">Hover the tabs above to see the animated underline indicator.</div>
+            </div>
+        </section>
+
+        <!-- DROPDOWN -->
+        <section class="section">
+            <div class="section-title">3. Dropdown Menu (hover to open)</div>
+            <div class="demo-nav-wrap" style="overflow:visible">
+                <nav class="nav-dropdown">
+                    <span class="nav-dropdown-logo">DevNav</span>
+                    <a href="#"
+                        style="color:var(--muted);font-size:.88rem;padding:8px 14px;text-decoration:none;border-radius:8px;transition:all .2s">Home</a>
+                    <div class="dd-item">
+                        <a href="#">Courses</a>
+                        <div class="dropdown-menu">
+                            <a href="#">HTML Basics</a>
+                            <a href="#">CSS Fundamentals</a>
+                            <a href="#">JavaScript</a>
+                            <a href="#">React Framework</a>
+                        </div>
+                    </div>
+                    <div class="dd-item">
+                        <a href="#">Labs</a>
+                        <div class="dropdown-menu">
+                            <a href="#">Lab 01 — Git</a>
+                            <a href="#">Lab 02 — HTML</a>
+                            <a href="#">Lab 03 — CSS</a>
+                        </div>
+                    </div>
+                    <a href="#"
+                        style="color:var(--muted);font-size:.88rem;padding:8px 14px;text-decoration:none;border-radius:8px;transition:all .2s">Contact</a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- VERTICAL NAV -->
+        <section class="section">
+            <div class="section-title">4. Vertical Sidebar Navigation</div>
+            <div class="nav-v-outer">
+                <nav class="nav-v">
+                    <div class="nav-v-logo">⚡ Dashboard</div>
+                    <div class="nav-v-section">Main</div>
+                    <a href="#"><span class="icon">🏠</span> Home</a>
+                    <a href="#" class="active"><span class="icon">📚</span> Courses</a>
+                    <a href="#"><span class="icon">🧪</span> Labs</a>
+                    <div class="nav-v-section">Account</div>
+                    <a href="#"><span class="icon">👤</span> Profile</a>
+                    <a href="#"><span class="icon">⚙️</span> Settings</a>
+                    <a href="#"><span class="icon">🚪</span> Logout</a>
+                </nav>
+                <div class="nav-v-content">
+                    <strong style="color:var(--text)">Courses</strong>
+                    <p style="margin-top:8px">The active item in the sidebar is highlighted with a purple background.
+                        Hover other items to see the transition effect.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESPONSIVE BURGER -->
+        <section class="section">
+            <div class="section-title">5. Responsive Hamburger Navigation</div>
+            <div class="burger-nav">
+                <div class="burger-bar">
+                    <span class="burger-logo">🎓 UET Lab</span>
+                    <button class="burger-btn">☰</button>
+                </div>
+                <div class="burger-menu">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Courses</a>
+                    <a href="#">Labs</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

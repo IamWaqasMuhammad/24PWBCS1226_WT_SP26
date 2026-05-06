@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 10 – Advanced Effects | Lab 03</title>
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        /* =========================================================
+       TASK 10: ADVANCED EFFECTS SHOWCASE
+       ========================================================= */
+
+        .demo-box {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* ─── 1. GRADIENT TEXT ─── */
+        .grad-text-1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #6c63ff, #ff6584, #fcd34d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .grad-text-2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .grad-text-3 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ─── 2. CUSTOM CHECKBOXES ─── */
+        .custom-check {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-size: .95rem;
+            color: var(--muted);
+            user-select: none;
+        }
+
+        .custom-check input {
+            display: none;
+        }
+
+        .check-ui {
+            width: 24px;
+            height: 24px;
+            border-radius: 7px;
+            border: 2px solid rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .25s;
+            flex-shrink: 0;
+        }
+
+        .custom-check input:checked~.check-ui {
+            background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+            border-color: transparent;
+            box-shadow: 0 4px 14px rgba(108, 99, 255, .5);
+        }
+
+        .custom-check input:checked~.check-ui::after {
+            content: "";
+            display: block;
+            width: 7px;
+            height: 11px;
+            border: 2.5px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg) translate(-1px, -2px);
+        }
+
+        /* CUSTOM RADIO */
+        .custom-radio {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-size: .95rem;
+            color: var(--muted);
+            user-select: none;
+        }
+
+        .custom-radio input {
+            display: none;
+        }
+
+        .radio-ui {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .25s;
+            flex-shrink: 0;
+        }
+
+        .custom-radio input:checked~.radio-ui {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, .25);
+        }
+
+        .custom-radio input:checked~.radio-ui::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* ─── 3. LOADING ANIMATIONS ─── */
+        /* Spinner */
+        .spinner-ring {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 4px solid rgba(108, 99, 255, .2);
+            border-top-color: #6c63ff;
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Dots */
+        .dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            animation: bounce 1.2s ease-in-out infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: .2s;
+            background: var(--secondary);
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: .4s;
+            background: var(--accent);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0.7);
+                opacity: .5;
+            }
+
+            40% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        /* Pulse */
+        .pulse {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(108, 99, 255, .7);
+            }
+
+            70% {
+                transform: scale(1.1);
+                opacity: .8;
+                box-shadow: 0 0 0 15px rgba(108, 99, 255, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255, 255, 255, .04) 25%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .04) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes shimmer {
+            from {
+                background-position: 200% 0;
+            }
+
+            to {
+                background-position: -200% 0;
+            }
+        }
+
+        .sk-line {
+            height: 14px;
+            margin-bottom: 10px;
+        }
+
+        .sk-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Progress bar */
+        .progress-wrap {
+            height: 8px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .07);
+            overflow: hidden;
+            width: 200px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #6c63ff, #ff6584);
+            animation: progress 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes progress {
+            from {
+                width: 20%;
+            }
+
+            to {
+                width: 90%;
+            }
+        }
+
+        /* ─── 4. TEXT CLIPPING ─── */
+        .clip-text {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background-image: url("https://picsum.photos/seed/clip/800/400");
+            background-size: cover;
+            background-position: center;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        /* ─── 5. COMPLEX SHADOWS ─── */
+        .shadow-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(30, 30, 63, .9);
+            transition: box-shadow .3s;
+            cursor: pointer;
+        }
+
+        .s-hard {
+            box-shadow: 8px 8px 0 #6c63ff;
+        }
+
+        .s-neon {
+            box-shadow: 0 0 15px rgba(108, 99, 255, .8), 0 0 30px rgba(108, 99, 255, .5), 0 0 60px rgba(108, 99, 255, .3);
+        }
+
+        .s-inset {
+            box-shadow: inset 0 0 20px rgba(108, 99, 255, .4);
+        }
+
+        .s-multi {
+            box-shadow: 5px 5px 0 #6c63ff, 10px 10px 0 rgba(108, 99, 255, .5), 15px 15px 0 rgba(108, 99, 255, .2);
+        }
+
+        .s-colored {
+            box-shadow: -6px -6px 12px rgba(108, 99, 255, .25), 6px 6px 12px rgba(255, 101, 132, .25);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 10</div>
+        <h1>Advanced Effects Showcase</h1>
+        <p>Gradient text · Custom inputs · Loading animations · Text clipping · Complex shadows</p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+
+        <!-- 1. GRADIENT TEXT -->
+        <section class="section">
+            <div class="section-title">1. Gradient Text Effects</div>
+            <div class="demo-box">
+                <div class="grad-text-1">CSS is Awesome</div>
+                <div class="grad-text-2" style="margin-top:10px">Web Technologies</div>
+                <div class="grad-text-3" style="margin-top:10px">UET Peshawar</div>
+            </div>
+        </section>
+
+        <!-- 2. CUSTOM CHECKBOXES & RADIOS -->
+        <section class="section">
+            <div class="section-title">2. Custom Checkboxes &amp; Radio Buttons</div>
+            <div class="demo-box">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                    <div>
+                        <div
+                            style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--primary);margin-bottom:14px">
+                            Checkboxes</div>
+                        <div style="display:flex;flex-direction:column;gap:12px">
+                            <label class="custom-check"><input type="checkbox" checked /><span class="check-ui"></span>
+                                HTML5 (checked)</label>
+                            <label class="custom-check"><input type="checkbox" checked /><span class="check-ui"></span>
+                                CSS3 (checked)</label>
+                            <label class="custom-check"><input type="checkbox" /><span class="check-ui"></span>
+                                JavaScript (unchecked)</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div
+                            style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--primary);margin-bottom:14px">
+                            Radio Buttons</div>
+                        <div style="display:flex;flex-direction:column;gap:12px">
+                            <label class="custom-radio"><input type="radio" name="r" checked /><span
+                                    class="radio-ui"></span> Freshman</label>
+                            <label class="custom-radio"><input type="radio" name="r" /><span class="radio-ui"></span>
+                                Sophomore</label>
+                            <label class="custom-radio"><input type="radio" name="r" /><span class="radio-ui"></span>
+                                Junior</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. LOADING ANIMATIONS -->
+        <section class="section">
+            <div class="section-title">3. Loading Animations</div>
+            <div class="demo-box">
+                <div class="flex-wrap">
+                    <div style="text-align:center">
+                        <div class="spinner-ring" style="margin:0 auto 10px"></div>
+                        <div style="font-size:.75rem;color:var(--muted)">Spinner</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="dots" style="margin-bottom:10px">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <div style="font-size:.75rem;color:var(--muted)">Bouncing Dots</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="pulse" style="margin:0 auto 10px"></div>
+                        <div style="font-size:.75rem;color:var(--muted)">Pulse Ring</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="progress-wrap" style="margin-bottom:10px">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div style="font-size:.75rem;color:var(--muted)">Progress Bar</div>
+                    </div>
+                </div>
+
+                <!-- Skeleton loader -->
+                <div
+                    style="margin-top:24px;background:rgba(255,255,255,.03);border-radius:12px;padding:18px;display:flex;gap:16px;align-items:center">
+                    <div class="skeleton sk-img"></div>
+                    <div style="flex:1">
+                        <div class="skeleton sk-line" style="width:60%"></div>
+                        <div class="skeleton sk-line" style="width:80%"></div>
+                        <div class="skeleton sk-line" style="width:45%"></div>
+                    </div>
+                </div>
+                <div style="font-size:.75rem;color:var(--muted);margin-top:6px;text-align:center">Skeleton Loading
+                    Placeholder</div>
+            </div>
+        </section>
+
+        <!-- 4. TEXT CLIPPING -->
+        <section class="section">
+            <div class="section-title">4. Text Clipping with Background Images</div>
+            <div class="demo-box">
+                <div class="clip-text">PESHAWAR</div>
+                <div class="clip-text" style="font-size:2.8rem;margin-top:4px">WEB TECHNOLOGIES</div>
+                <p style="font-size:.8rem;color:var(--muted);margin-top:12px">Uses <code
+                        style="color:#6ee7b7">background-image + -webkit-background-clip: text + -webkit-text-fill-color: transparent</code>
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. COMPLEX SHADOWS -->
+        <section class="section">
+            <div class="section-title">5. Complex Shadow Effects</div>
+            <div class="demo-box">
+                <div class="flex-wrap">
+                    <div style="text-align:center">
+                        <div class="shadow-box s-hard" style="margin:0 auto 10px">🎯</div>
+                        <div style="font-size:.72rem;color:var(--muted)">Hard offset</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="shadow-box s-neon" style="margin:0 auto 10px">⚡</div>
+                        <div style="font-size:.72rem;color:var(--muted)">Neon glow</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="shadow-box s-inset" style="margin:0 auto 10px">🌚</div>
+                        <div style="font-size:.72rem;color:var(--muted)">Inset shadow</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="shadow-box s-multi" style="margin:0 auto 10px">📦</div>
+                        <div style="font-size:.72rem;color:var(--muted)">Multi-layer</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="shadow-box s-colored" style="margin:0 auto 10px">🎨</div>
+                        <div style="font-size:.72rem;color:var(--muted)">Bicolor</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

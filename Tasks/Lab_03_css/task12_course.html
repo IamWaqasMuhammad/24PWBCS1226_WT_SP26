@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 12 – Course Website | Lab 03</title>
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        /* =========================================================
+       TASK 12: COURSE WEBSITE STYLING — TABLE DESIGN
+       ========================================================= */
+
+        .course-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .course-title span {
+            background: linear-gradient(90deg, #6c63ff, #ff6584);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── TABLE ── */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .88rem;
+        }
+
+        thead th {
+            background: rgba(108, 99, 255, .15);
+            color: var(--primary);
+            font-size: .72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            padding: 14px 18px;
+            text-align: left;
+            white-space: nowrap;
+            border-bottom: 2px solid rgba(108, 99, 255, .25);
+        }
+
+        thead th:first-child {
+            border-radius: 16px 0 0 0;
+        }
+
+        thead th:last-child {
+            border-radius: 0 16px 0 0;
+        }
+
+        /* Zebra striping */
+        tbody tr:nth-child(odd) {
+            background: rgba(255, 255, 255, .025);
+        }
+
+        tbody tr:nth-child(even) {
+            background: rgba(255, 255, 255, .012);
+        }
+
+        /* Hover on row */
+        tbody tr {
+            transition: background .2s, transform .15s;
+            cursor: default;
+        }
+
+        tbody tr:hover {
+            background: rgba(108, 99, 255, .1) !important;
+        }
+
+        tbody td {
+            padding: 13px 18px;
+            color: var(--muted);
+            border-bottom: 1px solid rgba(255, 255, 255, .04);
+            vertical-align: middle;
+        }
+
+        tbody td strong {
+            color: var(--text);
+        }
+
+        /* Last row no border */
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ── TYPE BADGES ── */
+        .type-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .type-lecture {
+            background: rgba(108, 99, 255, .2);
+            color: #a78bfa;
+            border: 1px solid rgba(108, 99, 255, .3);
+        }
+
+        .type-lab {
+            background: rgba(67, 233, 123, .15);
+            color: #6ee7b7;
+            border: 1px solid rgba(67, 233, 123, .25);
+        }
+
+        .type-quiz {
+            background: rgba(252, 211, 77, .15);
+            color: #fcd34d;
+            border: 1px solid rgba(252, 211, 77, .25);
+        }
+
+        .type-project {
+            background: rgba(255, 101, 132, .15);
+            color: #f9a8d4;
+            border: 1px solid rgba(255, 101, 132, .25);
+        }
+
+        .type-exam {
+            background: rgba(239, 68, 68, .15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, .25);
+        }
+
+        .type-holiday {
+            background: rgba(167, 169, 190, .1);
+            color: #a7a9be;
+            border: 1px solid rgba(167, 169, 190, .2);
+        }
+
+        /* ── STATUS ── */
+        .status-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .82rem;
+        }
+
+        .dot-done {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #43e97b;
+            flex-shrink: 0;
+        }
+
+        .dot-pending {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fcd34d;
+            flex-shrink: 0;
+        }
+
+        .dot-upcoming {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(167, 169, 190, .4);
+            flex-shrink: 0;
+        }
+
+        /* ── LEGEND ── */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .78rem;
+            color: var(--muted);
+        }
+
+        /* ── SUMMARY CARDS ── */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .sum-card {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .sum-card .num {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .sum-card .lbl {
+            font-size: .72rem;
+            color: var(--muted);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 640px) {
+            .content {
+                padding: 20px;
+            }
+
+            thead th,
+            tbody td {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="badge">Task 12</div>
+        <h1>Course Website Styling</h1>
+        <p>Zebra-striped tables · Hover effects · Borders · Color-coded types · Responsive design</p>
+        <a href="index.html" class="back-link">← Back to Lab Hub</a>
+    </header>
+
+    <main class="content">
+
+        <!-- Summary -->
+        <div class="summary-grid">
+            <div class="sum-card">
+                <div class="num"
+                    style="background:linear-gradient(90deg,#6c63ff,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+                    12</div>
+                <div class="lbl">Lectures</div>
+            </div>
+            <div class="sum-card">
+                <div class="num" style="color:#6ee7b7">6</div>
+                <div class="lbl">Labs</div>
+            </div>
+            <div class="sum-card">
+                <div class="num" style="color:#fcd34d">3</div>
+                <div class="lbl">Quizzes</div>
+            </div>
+            <div class="sum-card">
+                <div class="num" style="color:#f9a8d4">2</div>
+                <div class="lbl">Projects</div>
+            </div>
+            <div class="sum-card">
+                <div class="num" style="color:#fca5a5">1</div>
+                <div class="lbl">Exam</div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="course-header">
+            <div>
+                <div class="course-title">CS 224L — <span>Web Technologies</span></div>
+                <div style="color:var(--muted);font-size:.85rem;margin-top:4px">Spring 2026 · UET Peshawar · Mr.
+                    Mohammad</div>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Week</th>
+                        <th>Date</th>
+                        <th>Topic</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Week 1</td>
+                        <td>Feb 18, 2026</td>
+                        <td><strong>Introduction to Web Technologies</strong><br><span style="font-size:.78rem">Course
+                                overview, tools setup, Git basics</span></td>
+                        <td><span class="type-badge type-lecture">Lecture</span></td>
+                        <td><span class="status-dot"><span class="dot-done"></span> Done</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Week 1</td>
+                        <td>Feb 20, 2026</td>
+                        <td><strong>Lab 01 — Git &amp; Version Control</strong><br><span
+                                style="font-size:.78rem">Repository setup, branches, commits</span></td>
+                        <td><span class="type-badge type-lab">Lab</span></td>
+                        <td><span class="status-dot"><span class="dot-done"></span> Done</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Week 2</td>
+                        <td>Feb 25, 2026</td>
+                        <td><strong>HTML5 Fundamentals</strong><br><span style="font-size:.78rem">Semantic elements,
+                                forms, tables, media</span></td>
+                        <td><span class="type-badge type-lecture">Lecture</span></td>
+                        <td><span class="status-dot"><span class="dot-done"></span> Done</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Week 2</td>
+                        <td>Feb 27, 2026</td>
+                        <td><strong>Lab 02 — HTML Pages</strong><br><span style="font-size:.78rem">Profile, schedule,
+                                navigation, registration pages</span></td>
+                        <td><span class="type-badge type-lab">Lab</span></td>
+                        <td><span class="status-dot"><span class="dot-done"></span> Done</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Week 3</td>
+                        <td>Mar 4, 2026</td>
+                        <td><strong>CSS Selectors &amp; Box Model</strong><br><span style="font-size:.78rem">Selectors,
+                                specificity, cascade, box model</span></td>
+                        <td><span class="type-badge type-lecture">Lecture</span></td>
+                        <td><span class="status-dot"><span class="dot-done"></span> Done</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Week 3</td>
+                        <td>Mar 6, 2026</td>
+                        <td><strong>Quiz 1</strong><br><span style="font-size:.78rem">HTML5 &amp; Git
+                                fundamentals</span></td>
+                        <td><span class="type-badge type-quiz">Quiz</span></td>
+                        <td><span class="status-dot"><span class="dot-done"></span> Done</span></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Week 4</td>
+                        <td>Mar 11, 2026</td>
+                        <td><strong>Typography, Backgrounds &amp; Images</strong><br><span
+                                style="font-size:.78rem">Fonts, gradients, filters, blend modes</span></td>
+                        <td><span class="type-badge type-lecture">Lecture</span></td>
+                        <td><span class="status-dot"><span class="dot-done"></span> Done</span></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Week 4</td>
+                        <td>Mar 13, 2026</td>
+                        <td><strong>Lab 03 — CSS Mastery</strong><br><span style="font-size:.78rem">Selectors,
+                                typography, effects, transforms</span></td>
+                        <td><span class="type-badge type-lab">Lab</span></td>
+                        <td><span class="status-dot"><span class="dot-pending"></span> In Progress</span></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Week 5</td>
+                        <td>Mar 18, 2026</td>
+                        <td><strong>CSS Flexbox &amp; Grid</strong><br><span style="font-size:.78rem">One-dimensional
+                                and two-dimensional layouts</span></td>
+                        <td><span class="type-badge type-lecture">Lecture</span></td>
+                        <td><span class="status-dot"><span class="dot-upcoming"></span> Upcoming</span></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Week 5</td>
+                        <td>Mar 20, 2026</td>
+                        <td><strong>Lab 04 — Flexbox &amp; Grid Layouts</strong></td>
+                        <td><span class="type-badge type-lab">Lab</span></td>
+                        <td><span class="status-dot"><span class="dot-upcoming"></span> Upcoming</span></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Week 6</td>
+                        <td>Mar 25, 2026</td>
+                        <td><strong>JavaScript Basics</strong><br><span style="font-size:.78rem">Variables, functions,
+                                DOM manipulation</span></td>
+                        <td><span class="type-badge type-lecture">Lecture</span></td>
+                        <td><span class="status-dot"><span class="dot-upcoming"></span> Upcoming</span></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Week 6</td>
+                        <td>Mar 27, 2026</td>
+                        <td><strong>Quiz 2</strong><br><span style="font-size:.78rem">CSS selectors, box model,
+                                Flexbox</span></td>
+                        <td><span class="type-badge type-quiz">Quiz</span></td>
+                        <td><span class="status-dot"><span class="dot-upcoming"></span> Upcoming</span></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Week 8</td>
+                        <td>Apr 10, 2026</td>
+                        <td><strong>Mid-Term Examination</strong></td>
+                        <td><span class="type-badge type-exam">Exam</span></td>
+                        <td><span class="status-dot"><span class="dot-upcoming"></span> Upcoming</span></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Week 10</td>
+                        <td>Apr 24, 2026</td>
+                        <td><strong>Final Project</strong><br><span style="font-size:.78rem">Full-stack mini web
+                                application</span></td>
+                        <td><span class="type-badge type-project">Project</span></td>
+                        <td><span class="status-dot"><span class="dot-upcoming"></span> Upcoming</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item"><span class="type-badge type-lecture">Lecture</span></div>
+            <div class="legend-item"><span class="type-badge type-lab">Lab</span></div>
+            <div class="legend-item"><span class="type-badge type-quiz">Quiz</span></div>
+            <div class="legend-item"><span class="type-badge type-project">Project</span></div>
+            <div class="legend-item"><span class="type-badge type-exam">Exam</span></div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

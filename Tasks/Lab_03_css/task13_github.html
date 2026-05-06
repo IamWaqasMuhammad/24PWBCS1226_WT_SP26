@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 13 – GitHub Pages Enhancement | Lab 03</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/shared.css" />
+    <style>
+        /* =========================================================
+       TASK 13: GITHUB PAGES ENHANCEMENT
+       ========================================================= */
+        body {
+            background: #0d1117;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* TOPBAR */
+        .gh-nav {
+            display: flex;
+            align-items: center;
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 0 32px;
+            height: 62px;
+            gap: 16px;
+        }
+
+        .gh-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #f0f6fc;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        .gh-logo svg {
+            width: 28px;
+            height: 28px;
+            fill: #f0f6fc;
+        }
+
+        .gh-nav-links {
+            display: flex;
+            gap: 4px;
+            margin-left: 12px;
+        }
+
+        .gh-nav-links a {
+            color: #8b949e;
+            font-size: .87rem;
+            font-weight: 500;
+            padding: 7px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .gh-nav-links a:hover {
+            color: #f0f6fc;
+            background: rgba(255, 255, 255, .06);
+            text-decoration: none;
+        }
+
+        .gh-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #30363d;
+            margin-left: auto;
+        }
+
+        /* PROFILE LAYOUT */
+        .gh-body {
+            display: grid;
+            grid-template-columns: 296px 1fr;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 32px auto;
+            padding: 0 24px;
+        }
+
+        /* SIDEBAR */
+        .gh-sidebar {}
+
+        .gh-avatar-lg {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #30363d;
+            display: block;
+        }
+
+        .gh-name-lg {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #f0f6fc;
+            margin-top: 14px;
+        }
+
+        .gh-handle {
+            color: #8b949e;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 14px;
+        }
+
+        .gh-bio {
+            color: #c9d1d9;
+            font-size: .9rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .gh-follow-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #21262d;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: .88rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all .2s;
+            margin-bottom: 14px;
+        }
+
+        .gh-follow-btn:hover {
+            background: #30363d;
+            color: #f0f6fc;
+        }
+
+        .gh-meta {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .gh-meta li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8b949e;
+            font-size: .87rem;
+        }
+
+        .gh-meta li span.val {
+            color: #c9d1d9;
+        }
+
+        .gh-stats {
+            display: flex;
+            gap: 16px;
+            font-size: .83rem;
+            color: #8b949e;
+            flex-wrap: wrap;
+        }
+
+        .gh-stats a {
+            color: #8b949e;
+            text-decoration: none;
+        }
+
+        .gh-stats a:hover {
+            color: #0969da;
+            text-decoration: underline;
+        }
+
+        .gh-stats a strong {
+            color: #f0f6fc;
+        }
+
+        /* MAIN */
+        .gh-main {}
+
+        /* Pinned repos */
+        .gh-section-title {
+            color: #f0f6fc;
+            font-size: .9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+            padding-bottom: 8px;
+        }
+
+        .gh-pins {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .gh-pin {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: border-color .2s;
+        }
+
+        .gh-pin:hover {
+            border-color: #6c63ff;
+        }
+
+        .gh-pin-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gh-pin-icon {
+            font-size: .85rem;
+        }
+
+        .gh-pin-name {
+            color: #388bfd;
+            font-size: .88rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .gh-pin-name:hover {
+            text-decoration: underline;
+        }
+
+        .gh-pin-desc {
+            color: #8b949e;
+            font-size: .8rem;
+            line-height: 1.5;
+        }
+
+        .gh-pin-lang {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .78rem;
+            color: #8b949e;
+            margin-top: auto;
+        }
+
+        .lang-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .lang-html {
+            background: #e34c26;
+        }
+
+        .lang-css {
+            background: #563d7c;
+        }
+
+        .lang-js {
+            background: #f1e05a;
+        }
+
+        /* Contribution graph */
+        .contrib-title {
+            color: #f0f6fc;
+            font-size: .88rem;
+            margin-bottom: 10px;
+        }
+
+        .contrib-graph {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+
+        .contrib-grid {
+            display: flex;
+            gap: 3px;
+        }
+
+        .contrib-week {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .contrib-day {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            background: #161b22;
+            border: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .c1 {
+            background: #0e4429;
+        }
+
+        .c2 {
+            background: #006d32;
+        }
+
+        .c3 {
+            background: #26a641;
+        }
+
+        .c4 {
+            background: #39d353;
+        }
+
+        /* Recent activity */
+        .activity {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .act-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #21262d;
+            font-size: .85rem;
+        }
+
+        .act-item:last-child {
+            border-bottom: none;
+        }
+
+        .act-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .act-body {
+            flex: 1;
+        }
+
+        .act-body a {
+            color: #388bfd;
+            text-decoration: none;
+        }
+
+        .act-body a:hover {
+            text-decoration: underline;
+        }
+
+        .act-body .repo {
+            color: #388bfd;
+            font-weight: 600;
+        }
+
+        .act-time {
+            color: #8b949e;
+            font-size: .78rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gh-body {
+                grid-template-columns: 1fr;
+            }
+
+            .gh-avatar-lg {
+                width: 100px;
+                height: 100px;
+            }
+
+            .gh-pins {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="gh-nav">
+        <a href="#" class="gh-logo">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+            </svg>
+            24PWBCS1226
+        </a>
+        <div class="gh-nav-links">
+            <a href="#">Pull requests</a>
+            <a href="#">Issues</a>
+            <a href="#">Marketplace</a>
+            <a href="#">Explore</a>
+        </div>
+        <img src="https://picsum.photos/seed/gh-av/34/34" class="gh-avatar" alt="Avatar" />
+    </nav>
+
+    <div class="gh-body">
+
+        <!-- SIDEBAR -->
+        <aside class="gh-sidebar">
+            <img src="https://picsum.photos/seed/profile2/260/260" class="gh-avatar-lg" alt="Profile" />
+            <div class="gh-name-lg">Waqas Muhammad</div>
+            <div class="gh-handle">24PWBCS1226</div>
+            <p class="gh-bio">CS student at UET Peshawar. Passionate about web technologies, open source, and building
+                cool things with HTML, CSS &amp; JavaScript.</p>
+            <button class="gh-follow-btn">Follow</button>
+            <ul class="gh-meta">
+                <li>🏛️ <span class="val">UET Peshawar, CS Dept.</span></li>
+                <li>📅 <span class="val">Spring 2026</span></li>
+                <li>📧 <span class="val">24pwbcs1226@uetpeshawar.edu.pk</span></li>
+                <li>🌐 <a href="#" style="color:#388bfd">uetpeshawar.edu.pk</a></li>
+            </ul>
+            <div class="gh-stats">
+                <a href="#"><strong>12</strong> followers</a>
+                <a href="#"><strong>8</strong> following</a>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="gh-main">
+
+            <!-- Pinned Repos -->
+            <div class="gh-section-title">📌 Pinned Repositories</div>
+            <div class="gh-pins">
+
+                <div class="gh-pin">
+                    <div class="gh-pin-top">
+                        <span class="gh-pin-icon">📁</span>
+                        <a href="#" class="gh-pin-name">24PWBCS1226_WT_SP26</a>
+                    </div>
+                    <p class="gh-pin-desc">Web Technologies Lab assignments — Lab 01 (Git), Lab 02 (HTML), Lab 03 (CSS)
+                    </p>
+                    <div class="gh-pin-lang">
+                        <span class="lang-dot lang-html"></span> HTML
+                        <span style="margin-left:8px" class="lang-dot lang-css"></span> CSS
+                    </div>
+                </div>
+
+                <div class="gh-pin">
+                    <div class="gh-pin-top">
+                        <span class="gh-pin-icon">📁</span>
+                        <a href="#" class="gh-pin-name">portfolio-site</a>
+                    </div>
+                    <p class="gh-pin-desc">Personal portfolio website built with pure HTML5 and CSS3, hosted on GitHub
+                        Pages.</p>
+                    <div class="gh-pin-lang">
+                        <span class="lang-dot lang-html"></span> HTML
+                        <span style="margin-left:8px" class="lang-dot lang-css"></span> CSS
+                    </div>
+                </div>
+
+                <div class="gh-pin">
+                    <div class="gh-pin-top">
+                        <span class="gh-pin-icon">📁</span>
+                        <a href="#" class="gh-pin-name">css-experiments</a>
+                    </div>
+                    <p class="gh-pin-desc">CSS animations, transforms, gradients and layout experiments from Lab 03.</p>
+                    <div class="gh-pin-lang">
+                        <span class="lang-dot lang-css"></span> CSS
+                        <span style="margin-left:8px" class="lang-dot lang-js"></span> JavaScript
+                    </div>
+                </div>
+
+                <div class="gh-pin">
+                    <div class="gh-pin-top">
+                        <span class="gh-pin-icon">📁</span>
+                        <a href="#" class="gh-pin-name">uet-notes</a>
+                    </div>
+                    <p class="gh-pin-desc">Lecture notes and resources for CS 224L Web Technologies course at UET
+                        Peshawar.</p>
+                    <div class="gh-pin-lang">
+                        <span class="lang-dot lang-js"></span> Markdown
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Contribution graph -->
+            <div class="gh-section-title">📊 Contribution Graph (Spring 2026)</div>
+            <div class="contrib-graph">
+                <div class="contrib-grid" id="contrib"></div>
+                <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:.75rem;color:#8b949e">
+                    <span>Less</span>
+                    <div style="display:flex;gap:3px;align-items:center">
+                        <div
+                            style="width:12px;height:12px;border-radius:2px;background:#161b22;border:1px solid rgba(255,255,255,.06)">
+                        </div>
+                        <div style="width:12px;height:12px;border-radius:2px;background:#0e4429"></div>
+                        <div style="width:12px;height:12px;border-radius:2px;background:#006d32"></div>
+                        <div style="width:12px;height:12px;border-radius:2px;background:#26a641"></div>
+                        <div style="width:12px;height:12px;border-radius:2px;background:#39d353"></div>
+                    </div>
+                    <span>More</span>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="gh-section-title">🕐 Recent Activity</div>
+            <div class="activity">
+                <div class="act-item">
+                    <img src="https://picsum.photos/seed/a1/28/28" class="act-icon" alt="" />
+                    <div class="act-body">
+                        Pushed to <a class="repo" href="#">24PWBCS1226_WT_SP26</a> — <span style="color:#c9d1d9">Added
+                            Lab 03 CSS task files</span>
+                        <div class="act-time">1 hour ago</div>
+                    </div>
+                </div>
+                <div class="act-item">
+                    <img src="https://picsum.photos/seed/a2/28/28" class="act-icon" alt="" />
+                    <div class="act-body">
+                        Created branch <a href="#" style="color:#388bfd">lab-03-css</a> in <a class="repo"
+                            href="#">24PWBCS1226_WT_SP26</a>
+                        <div class="act-time">2 hours ago</div>
+                    </div>
+                </div>
+                <div class="act-item">
+                    <img src="https://picsum.photos/seed/a3/28/28" class="act-icon" alt="" />
+                    <div class="act-body">
+                        Opened issue <a href="#" style="color:#388bfd">#12 — Navigation hover states</a> in <a
+                            class="repo" href="#">css-experiments</a>
+                        <div class="act-time">1 day ago</div>
+                    </div>
+                </div>
+                <div class="act-item">
+                    <img src="https://picsum.photos/seed/a4/28/28" class="act-icon" alt="" />
+                    <div class="act-body">
+                        Starred <a class="repo" href="#">awesome-css</a>
+                        <div class="act-time">2 days ago</div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer
+        style="border-top:1px solid #21262d;padding:20px 32px;font-size:.78rem;color:#8b949e;text-align:center;background:#161b22;margin-top:40px">
+        © 2026 GitHub, Inc. · Demo page for Lab 03 Task 13 · 24PWBCS1226 · UET Peshawar
+        &nbsp;|&nbsp; <a href="index.html" style="color:#388bfd">← Lab Hub</a>
+    </footer>
+
+    <script>
+        // Generate a random-ish contribution graph
+        const grid = document.getElementById('contrib');
+        const classes = ['', '', 'c1', 'c2', 'c3', 'c4'];
+        for (let w = 0; w < 18; w++) {
+            const week = document.createElement('div');
+            week.className = 'contrib-week';
+            for (let d = 0; d < 7; d++) {
+                const day = document.createElement('div');
+                day.className = 'contrib-day ' + (Math.random() > 0.55 ? classes[Math.floor(Math.random() * classes.length)] : '');
+                week.appendChild(day);
+            }
+            grid.appendChild(week);
+        }
+    </script>
+
+</body>
+
+</html>
