@@ -1,0 +1,22 @@
+{
+  "name": "24pwbcs1226_wt_sp_26",
+  "version": "1.0.0",
+  "description": "This repository contains all my coursework and learning materials for the university subject **24PWBCS1226 Web Technologies (WT) SP26**. It covers web development technologies including HTML, CSS, JavaScript, React, Express.js, and Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IamWaqasMuhammad/24PWBCS1226_WT_SP26.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IamWaqasMuhammad/24PWBCS1226_WT_SP26/issues"
+  },
+  "homepage": "https://github.com/IamWaqasMuhammad/24PWBCS1226_WT_SP26#readme",
+  "dependencies": {
+    "expres": "^0.0.5"
+  }
+}
