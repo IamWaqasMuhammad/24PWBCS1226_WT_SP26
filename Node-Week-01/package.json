@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/IamWaqasMuhammad/24PWBCS1226_WT_SP26#readme",
   "dependencies": {
-    "expres": "^0.0.5"
+    "expres": "^0.0.5",
+    "express": "^5.2.1"
   }
 }
