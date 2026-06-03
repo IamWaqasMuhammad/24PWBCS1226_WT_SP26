@@ -9,8 +9,12 @@ app.get("/", (req, res) => {
   res.sendFile(`${publicPath}/index.html`);
 });
 // Define route to serve 'about.html'
-app.get("/", (req, res) => {
+app.get("/about", (req, res) => {
   res.sendFile(`${publicPath}/about.html`);
+});
+// Define route to serve 'about.html'
+app.get("/contact", (req, res) => {
+  res.sendFile(`${publicPath}/contact.html`);
 });
 // Handle 404 - Not Found
 app.use((req, res) => {
