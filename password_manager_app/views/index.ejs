@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Password Manager</title>
+</head>
+<body>
+<div class="container">
+<h1 class="heading">Password Manager</h1>
+<!-- Form for storing passwords -->
+<div class="form-container">
+<form action="/store" method="POST" class="password-form">
+<label for="website">Website:</label>
+<input type="text" id="website" name="website" placeholder="Website">
+<label for="username">Username:</label>
+<input type="text" id="username" name="username" placeholder="Username">
+<label for="password">Password:</label>
+<input type="text" id="password" name="password" placeholder="Password">
+<button type="submit"><i class="fas fa-save"></i> Save</button>
+</form>
+</div>
+<!-- Displaying saved passwords -->
+<h2 class="heading">Saved Passwords</h2>
+<div class="password-cards">
+<% passwords.forEach(password => { %>
+<div class="card">
+<div class="card-content">
+<p><strong>ID:</strong> <%= password.id %></p>
+<p><strong>Website:</strong> <%= password.website %></p>
+<p><strong>Username:</strong> <%= password.username %></p>
+<p><strong>Password:</strong> <%= password.password %></p>
+</div>
+<div class="card-actions">
+<a href="/edit/<%= password.id %>"><i class="fas fa-edit"></i> Edit</a>
+<a href="/delete/<%= password.id %>"><i class="fas fa-trash-alt"></i> Delete</a>
+</div>
+</div>
+<% }) %>
+</div>
+</body>
+</html>

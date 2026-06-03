@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Password</title>
+</head>
+<body>
+<div class="container">
+<h1 class="form-header">Edit Password</h1>
+<div class="form-container">
+<form action="/update/<%= password.id %>" method="POST" class="password-form">
+<label for="website">Website</label>
+<input type="text" id="website" name="website" placeholder="Website" value="<%= password.website %>">
+<label for="username">Username</label>
+<input type="text" id="username" name="username" placeholder="Username" value="<%= password.username %>">
+<label for="password">Password</label>
+<input type="text" id="password" name="password" placeholder="Password" value="<%= password.password %>">
+<button type="submit">Update</button>
+</form>
+</div>
+</div>
+</body>
+</html>
